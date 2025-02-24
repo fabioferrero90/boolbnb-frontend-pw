@@ -5,9 +5,9 @@ import Footer from '../Components/Footer'
 const DefaultLayout = () => {
   return (
     <div>
-    <header className=""><Header /></header>
+    <header><Header /></header>
     <main><Outlet /></main>
-    <footer className=""><Footer /></footer>
+    <footer><Footer /></footer>
   </div>
   )
 }
