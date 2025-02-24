@@ -8,8 +8,8 @@ const App = () => {
     <GlobalProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<DefaultLayout />}>
-            <Route path="/" element={<Home />} />
+          <Route Component={DefaultLayout}>
+            <Route path="/" Component={Home} />
           </Route>
         </Routes>
       </BrowserRouter>
