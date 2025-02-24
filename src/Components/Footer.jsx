@@ -15,10 +15,10 @@ const Footer = () => {
             </div>
             <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h2 className="mb-6 text-sm font-semibold uppercase text-white">
                   Guide Utili
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                <ul className="text-gray-400 font-medium">
                   <li className="mb-4">
                     <a href="#" className="hover:underline">
                       Inserisci un appartamento
@@ -32,10 +32,10 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h2 className="mb-6 text-sm font-semibold uppercase text-white">
                   Seguici su
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                <ul className="text-gray-400 font-medium">
                   <li className="mb-4">
                     <a
                       href="https://github.com/fabioferrero90/boolbnb-frontend-pw"
@@ -47,10 +47,10 @@ const Footer = () => {
                 </ul>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+                <h2 className="mb-6 text-sm font-semibold uppercase text-white">
                   Info
                 </h2>
-                <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                <ul className="text-gray-400 font-medium">
                   <li className="mb-4">
                     <a href="#" className="hover:underline">
                       Privacy Policy
@@ -65,9 +65,9 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <hr className="my-6  sm:mx-auto border-gray-700 lg:my-8" />
           <div className="sm:flex sm:items-center sm:justify-between">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+            <span className="text-sm  sm:text-center text-gray-400">
               © 2025{" "}
               <a href="https://flowbite.com/" className="hover:underline">
                 BoolB&B™
@@ -77,7 +77,7 @@ const Footer = () => {
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a
                 href="#"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                className="text-gray-500 hover:text-white"
               >
                 <svg
                   className="w-4 h-4"
@@ -96,7 +96,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+                className="text-gray-500 hover:text-white ms-5"
               >
                 <svg
                   className="w-4 h-4"
@@ -111,7 +111,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+                className="text-gray-500 hover:text-white ms-5"
               >
                 <svg
                   className="w-4 h-4"
@@ -130,7 +130,7 @@ const Footer = () => {
               </a>
               <a
                 href="https://github.com/fabioferrero90/boolbnb-frontend-pw"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+                className="text-gray-500 hover:text-white ms-5"
               >
                 <svg
                   className="w-4 h-4"
@@ -149,7 +149,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
+                className="text-gray-500 hover:text-white ms-5"
               >
                 <svg
                   className="w-4 h-4"
