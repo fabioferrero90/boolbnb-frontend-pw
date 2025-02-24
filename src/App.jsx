@@ -7,7 +7,7 @@ const App = () => {
   return (
     <GlobalProvider>
       <BrowserRouter>
-      <Routes>
+        <Routes>
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
           </Route>
