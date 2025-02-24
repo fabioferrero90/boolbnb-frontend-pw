@@ -1,7 +1,17 @@
-const GlobalContext = () => {
+import { createContext, useContext } from "react"
+
+const GlobalContext = createContext();
+
+const GlobalProvider = ({children}) => {
   return (
-    <div>GlobalContext</div>
+    <GlobalContext.Provider value={{}}>
+      {children}
+    </GlobalContext.Provider>
   )
 }
 
-export default GlobalContext
+const useGlobalContext = () => {
+  return useContext(GlobalContext);
+};
+
+export { GlobalProvider, useGlobalContext };
