@@ -1,6 +1,7 @@
 const Home = () => {
   return (
     <div className="home">
+      <h1>CERCA L'ALLOGGIO ADATTO A TE:</h1>
       <form className="w-[80%] mx-auto">
         <label
           htmlFor="default-search"

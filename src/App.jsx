@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalProvider } from "./Contexts/GlobalContext";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
+import Results from "./Pages/Results";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
         <Routes>
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
+            <Route path="/results" Component={Results} />
           </Route>
         </Routes>
       </BrowserRouter>
