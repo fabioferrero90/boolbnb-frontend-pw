@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+.main-content {
+  min-height:500px;
+}
+
+.custom-bg-color-primary{
+  background: rgb(42,26,139);
+  background: linear-gradient(270deg, rgba(42,26,139,1) 0%, rgba(41,8,85,1) 68%, rgba(41,8,85,1) 93%, rgba(41,8,85,1) 100%);
+}
+
+.custom-teal-color{
+  color:#1afa72
+}
