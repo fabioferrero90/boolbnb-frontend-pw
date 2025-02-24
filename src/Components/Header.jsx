@@ -18,10 +18,10 @@ const Header = ( {headerMenu} ) => {
               </div>
               <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white">Dashboard</a>
+                  <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white">Dashboard</a>
                 </li>
                 <li>
-                  <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-600 hover:text-white">Impostazioni</a>
+                  <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white">Impostazioni</a>
                 </li>
                 <li>
                   <a href="#" className="block px-4 py-2 text-sm hover:bg-gray-600 text-gray-200 hover:text-white">Guadagni</a>
