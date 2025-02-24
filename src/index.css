@@ -9,9 +9,7 @@
   justify-content: center;
   align-items: center;
 }
-.main-content {
-  min-height:500px;
-}
+
 
 .custom-bg-color-primary{
   background: rgb(42,26,139);
