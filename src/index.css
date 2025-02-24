@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+.home{
+  min-height: 500px;
+  background-image: url(../public/sfondo/crociera-caraibi.webp);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
