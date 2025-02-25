@@ -76,7 +76,7 @@ const HouseGrid = () => {
                   <span className="px-1 font-bold">{house.likes}</span>-
                   <span className="px-1 font-bold">
                     {
-                      ratingNames.find((r) => r.rating === house.avg_rating)
+                      ratingNames.find((r) => r.id === Number(house.avg_rating))
                         ?.rating_name
                     }
                   </span>
