@@ -2,7 +2,7 @@
 
 .home{
   min-height: 500px;
-  background-image: url(../public/sfondo/crociera-caraibi.webp);
+  background: linear-gradient(270deg, rgba(41, 26, 139, 0.712) 0%, rgba(41, 8, 85, 0.594) 68%), url(/sfondo/crociera-caraibi.webp);
   background-size: cover;
   background-position: center;
   display: flex;
@@ -14,6 +14,10 @@
 .custom-bg-color-primary{
   background: rgb(42,26,139);
   background: linear-gradient(270deg, rgba(42,26,139,1) 0%, rgba(41,8,85,1) 68%, rgba(41,8,85,1) 93%, rgba(41,8,85,1) 100%);
+}
+
+.custom-teal-bg{
+  background-color:#1afa72
 }
 
 .custom-teal-color{
