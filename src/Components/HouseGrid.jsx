@@ -106,7 +106,7 @@ const HouseGrid = () => {
       </h1>
       <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {houses &&
-          houses.splice(0, 3).map((house, index) => (
+          houses.slice(0, 3).map((house, index) => (
             <div
               key={index}
               className={`relative w-full bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between ${
