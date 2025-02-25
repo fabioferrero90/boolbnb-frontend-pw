@@ -33,7 +33,6 @@ const HouseGrid = () => {
         });
     }
   };
- 
 
   useEffect(() => {
     fetchHouses();
@@ -109,7 +108,7 @@ const HouseGrid = () => {
                   </a>
                 </div>
                 <div
-                  className={`cursor-pointer flex flex-col absolute top-[2%] border border-gray-400 right-[2%] bg-white rounded-full w-8 h-8 flex items-center justify-center ${
+                  className={`cursor-pointer flex-col absolute top-[2%] border border-gray-400 right-[2%] bg-white rounded-full w-8 h-8 flex items-center justify-center ${
                     liked[index] ? "text-red-400" : "text-gray-400"
                   }`}
                   onClick={() => manageLike(house.id, index)}
