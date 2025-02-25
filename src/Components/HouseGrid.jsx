@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const HouseGrid = () => {
-  const [liked, setLiked] = useState([true, false, false]);
+  const [liked, setLiked] = useState([false, false, false]);
   const [houses, setHouses] = useState([]);
 
   const fetchHouses = () => {
@@ -11,7 +11,6 @@ const HouseGrid = () => {
       .get("http://localhost:3000/houses/mostliked")
       .then((res) => {
         setHouses(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -20,7 +19,7 @@ const HouseGrid = () => {
 
   const manageLike = (id, index) => {
     setLiked(liked.map((like, i) => (i === index ? !like : like)));
-    if (liked[index] == true) {
+    if (!liked[index]) {
       axios.put(`http://localhost:3000/houses/like/${id}`).then((response) => {
         fetchHouses();
       });
