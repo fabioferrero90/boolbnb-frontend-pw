@@ -1,8 +1,10 @@
 import { FaHeart } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useGlobalContext } from "../Contexts/GlobalContext";
 
 const HouseGrid = () => {
+  const { ratingNames } = useGlobalContext();
   const [liked, setLiked] = useState([false, false, false]);
   const [houses, setHouses] = useState([]);
 
@@ -31,68 +33,7 @@ const HouseGrid = () => {
         });
     }
   };
-
-  // const houses = [
-  //   {
-  //     id: 1,
-  //     name: "Casa 1",
-  //     abstract: "Casa 1 è una casa molto bella",
-  //     cover_image: "/houses/casa1.jpeg",
-  //     likes: 29,
-  //     reviews: 1209,
-  //     avg_rating: 4,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Casa 2",
-  //     abstract: "Casa 2 è una casa moderna con piscina",
-  //     cover_image: "/houses/casa2.jpeg",
-  //     likes: 42,
-  //     reviews: 124,
-  //     avg_rating: 3,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Casa 3",
-  //     abstract: "Casa 3 è una casa rustica in campagna",
-  //     cover_image: "/houses/casa3.jpeg",
-  //     likes: 79,
-  //     reviews: 1982,
-  //     avg_rating: 5,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Casa 4",
-  //     abstract: "Casa 4 è una casa rustica in campagna",
-  //     cover_image: "/houses/casa4.jpeg",
-  //     likes: 79,
-  //     reviews: 1982,
-  //     avg_rating: 5,
-  //   },
-  // ];
-
-  const ratingNames = [
-    {
-      rating: 1,
-      rating_name: "Scarso",
-    },
-    {
-      rating: 2,
-      rating_name: "Decente",
-    },
-    {
-      rating: 3,
-      rating_name: "Buono",
-    },
-    {
-      rating: 4,
-      rating_name: "Ottimo",
-    },
-    {
-      rating: 5,
-      rating_name: "Superbo",
-    },
-  ];
+ 
 
   useEffect(() => {
     fetchHouses();

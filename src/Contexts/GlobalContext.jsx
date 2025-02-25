@@ -20,16 +20,31 @@ const GlobalProvider = ({ children }) => {
       .get(`http://localhost:3000/houses/search?q=${query}`)
       .then((res) => {
         setResults(res.data);
-
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+
+  const [ratingNames, setRatingNames] = useState([]);
+  const fetchRatings = () => {
+    axios
+      .get("http://localhost:3000/reviews/ratings")
+      .then((res) => {
+        setRatingNames(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const value = {
     results,
     fetchResults,
+    ratingNames,
+    fetchRatings,
   };
 
   return (
