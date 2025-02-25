@@ -5,12 +5,16 @@ import { FaHeart } from "react-icons/fa";
 const Results = () => {
   const { results, fetchResults, ratingNames, fetchRatings} = useGlobalContext();
 
-  useEffect(() => {
-    fetchRatings()
-    fetchResults('giardino lago villa franco')
-  }, []);
+  // useEffect(() => {
+  //   fetchRatings();
+  //   fetchResults('giardino lago villa franco')
+  // }, []);
 
-  
+  const getRatingName = (rating) => {
+    const ratingObj = ratingNames && ratingNames.length > 0 ? ratingNames.find((r) => r.id === Number(rating)) : null;    
+    return ratingObj ? ratingObj.rating_name : "Nessuna Valutazione"
+  };
+
   return (
     <div className=" mx-auto max-w-screen-xl ">
    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-8">
@@ -42,12 +46,8 @@ const Results = () => {
                   <FaHeart className="w-5 h-5 text-red-400 " />
                   <span className="px-1 font-bold">{house.likes}</span>-
                   <span className="px-1 font-bold">
-                    {
-                      ratingNames.find((r) => r.rating === house.avg_rating)
-                        ?.rating_name
-                    }
+                    {`${getRatingName(house.avg_rating)} -`}
                   </span>
-                  -
                   <span className="px-1 text-gray-500">
                     {house.reviews} recensioni
                   </span>

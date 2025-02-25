@@ -15,12 +15,10 @@ const GlobalProvider = ({ children }) => {
 
   const fetchResults = (value) => {
     const query = filtraParoleChiave(value);
-    console.log(query);
     axios
       .get(`http://localhost:3000/houses/search?q=${query}`)
       .then((res) => {
         setResults(res.data);
-        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
