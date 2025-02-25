@@ -44,7 +44,7 @@ const HouseGrid = () => {
       <h1 className="block font-bold pb-8 text-3xl self-start text-white">
         Preferiti dagli utenti:
       </h1>
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 no-select">
         {houses &&
           houses.slice(0, 3).map((house, index) => (
             <div
