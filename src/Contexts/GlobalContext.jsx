@@ -40,6 +40,7 @@ const GlobalProvider = ({ children }) => {
 
   const value = {
     results,
+    setResults,
     fetchResults,
     ratingNames,
     fetchRatings,

@@ -16,6 +16,11 @@
   background: linear-gradient(270deg, rgba(42,26,139,1) 0%, rgba(41,8,85,1) 68%, rgba(41,8,85,1) 93%, rgba(41,8,85,1) 100%);
 }
 
+.custom-bg-color-secondary{
+  background: rgb(42,26,139);
+  background: linear-gradient(270deg, rgba(41, 26, 139, 0.2) 0%, rgba(41,8,85,0.2) 68%, rgba(41,8,85,0.2) 93%, rgba(41,8,85,0.2) 100%);
+}
+
 .custom-teal-bg{
   background-color:#1afa72
 }
