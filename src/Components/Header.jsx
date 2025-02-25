@@ -1,4 +1,9 @@
+import { useNavigate } from "react-router-dom"
+
 const Header = ( {headerMenu} ) => {
+
+  const navigate = useNavigate()
+
   return (
     <>
       <nav className="bg-white border-gray-200 custom-bg-color-primary">
@@ -41,11 +46,11 @@ const Header = ( {headerMenu} ) => {
         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 border-gray-700">
             <li>
-              <a href="#" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:text-teal-200 md:p-0 custom-teal-color" aria-current="page">Home</a>
+              <a href="#" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:text-teal-200 md:p-0 custom-teal-color" aria-current="page" onClick={() => navigate('/')}>Home</a>
             </li>
             {headerMenu.map(item => (
               <li key={item.key}>
-                <a href="#" className="lock py-2 px-3 rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page">{item.name}</a>
+                <a href="#" className="lock py-2 px-3 rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page" onClick={() => navigate(item.route)}>{item.name} </a>
               </li>
             ))}
           </ul>
