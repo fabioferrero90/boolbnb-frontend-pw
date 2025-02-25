@@ -1,8 +1,31 @@
+import { useGlobalContext } from "../Contexts/GlobalContext"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+
 const SearchBar = () => {
+  const { fetchResults } = useGlobalContext()
+  const [search, setSearch] = useState("")
+  const navigate = useNavigate()
+  
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
+
+
+  const submitSearch = (e) => {
+    e.preventDefault()
+    fetchResults(search)
+    navigate('/results')
+  }
+
+  useEffect(() => {
+    setSearch('')
+  }, [])
+
   return (
     <div className="w-[80%] mx-auto">
       <h1 className="block font-bold pb-8 text-3xl self-start text-white">Cerca l'alloggio per te:</h1>
-      <form>
+      <form onSubmit={submitSearch}>
         <label
           htmlFor="default-search"
           className="mb-2 text-sm font-medium text-gray-900 sr-only "
@@ -30,6 +53,8 @@ const SearchBar = () => {
           <input
             type="search"
             id="default-search"
+            value={search}
+            onChange={handleSearch}
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
             placeholder="Cerca l'alloggio che fa per te..."
             required

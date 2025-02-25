@@ -1,19 +1,12 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
-import { useEffect } from "react";
 
 const Results = () => {
-  const { houses, fetchHouses } = useGlobalContext();
-
-  useEffect(() => {
-    fetchHouses();
-  }, []);
-
-  console.log(houses);
+  const { results } = useGlobalContext();
 
   return (
     <div className=" mx-auto max-w-screen-xl">
-      {houses &&
-        houses.map((house) => (
+      {results &&
+        results.map((house) => (
           <div key={house.id}>
             <h2>{house.name}</h2>
             <p>{house.abstract}</p>

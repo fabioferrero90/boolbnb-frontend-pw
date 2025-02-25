@@ -4,13 +4,23 @@ import axios from "axios";
 const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [houses, setHouses] = useState([]);
+  const [results, setResults] = useState([]);
 
-  const fetchHouses = () => {
+  const congiunzioni = ['e', 'o', 'ma', 'anche', 'però', 'oppure', 'anzi', 'quindi', 'dunque', 'cioè', 'di'];
+
+  function filtraParoleChiave(input) {
+    const splittedWord = input.split(' ').filter(parola => !congiunzioni.includes(parola.toLowerCase()));
+    return splittedWord.join(' ');
+  }
+
+  const fetchResults = (value) => {
+    const query = filtraParoleChiave(value);
+    console.log(query);
     axios
-      .get("http://localhost:3000/houses")
+      .get(`http://localhost:3000/houses/search?q=${query}`)
       .then((res) => {
-        setHouses(res.data);
+        setResults(res.data);
+
       })
       .catch((error) => {
         console.log(error);
@@ -18,8 +28,8 @@ const GlobalProvider = ({ children }) => {
   };
 
   const value = {
-    houses,
-    fetchHouses,
+    results,
+    fetchResults,
   };
 
   return (
