@@ -48,7 +48,7 @@ const HouseGrid = () => {
           houses.slice(0, 3).map((house, index) => (
             <div
               key={index}
-              className={`relative w-full bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between ${
+              className={`relative w-full bg-white border-gray-200 rounded-lg shadow-sm flex flex-col justify-between ${
                 index === 0 ? "sm:col-span-2 lg:col-span-1" : ""
               }`}
             >

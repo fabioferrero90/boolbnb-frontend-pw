@@ -17,6 +17,7 @@ const Results = () => {
     ratingNames,
     fetchRatings,
     orderedBy,
+    results,
   } = useGlobalContext();
   const [liked, setLiked] = useState([]);
 
@@ -106,13 +107,31 @@ const Results = () => {
             buttons={["play", "repeat", "frame", "debug"]}
           />
         </Player>
-        <h1 className="text-2xl  text-center py-5">Nessun risultato trovato</h1>
-        <a
-          href="/"
-          className="mx-auto max-w-[50%] justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white custom-bg-color-primary rounded-lg hover:custom-teal-bg focus:ring-4 focus:outline-none focus:ring-blue-300"
-        >
-          Torna alla homepage
-        </a>
+        {(results.length == 0 && (
+          <>
+            <h1 className="text-2xl  text-center py-5">
+              Nessun risultato trovato
+            </h1>
+            <a
+              href="/"
+              className="mx-auto max-w-[50%] justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white custom-bg-color-primary rounded-lg hover:custom-teal-bg focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              Torna alla homepage
+            </a>
+          </>
+        )) || (
+          <>
+            <h1 className="text-2xl  text-center py-5">
+              Nessun risultato trovato utilizzando questi filtri
+            </h1>
+            <a
+              onClick={() => setFilteredResults(results)}
+              className="mx-auto max-w-[50%] justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white custom-bg-color-primary rounded-lg hover:custom-teal-bg focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer"
+            >
+              Resetta filtri
+            </a>
+          </>
+        )}
       </div>
     </div>
   ) : (

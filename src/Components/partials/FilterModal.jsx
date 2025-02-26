@@ -14,11 +14,13 @@ const FilterModal = () => {
     rooms: 2,
     bedrooms: 2,
     bathrooms: 1,
+    types: [],
   };
 
   const [formData, setFormData] = useState(initialFormData);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -38,8 +40,20 @@ const FilterModal = () => {
     }));
   };
 
+  const handleCheckboxChange = (e) => {
+    const { id, checked } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      types: checked
+        ? [...prevState.types, id]
+        : prevState.types.filter((type) => type !== id),
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
+
     const handledResults = results.filter((result) => {
       return (
         result.size >= formData.minMq &&
@@ -47,7 +61,8 @@ const FilterModal = () => {
         result.beds >= formData.bedrooms &&
         result.bathrooms >= formData.bathrooms &&
         result.price_pernight >= (formData.minPrice || 0) &&
-        result.price_pernight <= (formData.maxPrice || 999999999)
+        result.price_pernight <= (formData.maxPrice || 999999999) &&
+        (formData.types.length === 0 || formData.types.includes(result.type))
       );
     });
     setFilteredResults(handledResults);
@@ -371,8 +386,9 @@ const FilterModal = () => {
                               <input
                                 id={type}
                                 type="checkbox"
-                                value=""
+                                checked={formData.types.includes(type)}
                                 className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                                onChange={handleCheckboxChange}
                               />
                               <label
                                 htmlFor={type}
