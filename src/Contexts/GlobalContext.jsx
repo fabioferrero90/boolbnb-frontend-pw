@@ -5,6 +5,7 @@ const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
   const [results, setResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const congiunzioni = ['e', 'o', 'ma', 'anche', 'però', 'oppure', 'anzi', 'quindi', 'dunque', 'cioè', 'di'];
 
@@ -19,6 +20,7 @@ const GlobalProvider = ({ children }) => {
       .get(`http://localhost:3000/houses/search?q=${query}`)
       .then((res) => {
         setResults(res.data);
+        setFilteredResults(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -40,6 +42,8 @@ const GlobalProvider = ({ children }) => {
 
   const value = {
     results,
+    filteredResults,
+    setFilteredResults,
     setResults,
     fetchResults,
     ratingNames,
