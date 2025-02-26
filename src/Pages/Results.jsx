@@ -6,6 +6,7 @@ import { PiResizeLight } from "react-icons/pi";
 import axios from "axios";
 import FilterModal from "../Components/partials/FilterModal";
 import OrderResults from "../Components/partials/OrderResults";
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
 const Results = () => {
   const { filteredResults, setFilteredResults, fetchResults, ratingNames, fetchRatings, orderedBy } = useGlobalContext();
@@ -81,7 +82,23 @@ const Results = () => {
     return ratingObj ? ratingObj.rating_name : "Nessuna Valutazione";
   };
 
-  return (
+  return filteredResults.length == 0 ? (
+      <div className="mx-auto max-w-screen-xl">
+        <div className="flex justify-center flex-col p-5">
+        <Player
+          autoplay
+          loop
+          src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
+          style={{ height: '300px', width: '300px' }}
+        >
+          <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
+        </Player>
+          <h1 className="text-2xl font-bold text-center">Nessun risultato trovato</h1>
+        </div>
+      </div>
+  
+  ) : (
+
     <div className="mx-auto max-w-screen-xl">
       <div className="w-full mx-auto flex justify-between items-center gap-8 p-8">
         <FilterModal />
@@ -204,5 +221,6 @@ const Results = () => {
     </div>
   );
 };
+
 
 export default Results;
