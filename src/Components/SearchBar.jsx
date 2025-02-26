@@ -1,30 +1,36 @@
-import { useGlobalContext } from "../Contexts/GlobalContext"
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useGlobalContext } from "../Contexts/GlobalContext";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const { fetchResults } = useGlobalContext()
-  const [search, setSearch] = useState("")
-  const navigate = useNavigate()
-  
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-  }
+  const { fetchResults, filteredResults } = useGlobalContext();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
 
   const submitSearch = (e) => {
-    e.preventDefault()
-    fetchResults(search)
-    navigate('/results')
-  }
+    e.preventDefault();
+    fetchResults(search);
+  };
 
   useEffect(() => {
-    setSearch('')
-  }, [])
+    if (filteredResults && filteredResults.length > 0) {
+      navigate("/results");
+    }
+  }, [filteredResults, navigate]);
+
+  useEffect(() => {
+    setSearch("");
+  }, []);
 
   return (
     <div className="w-[80%] mx-auto">
-      <h1 className="block font-bold pb-8 text-3xl self-start text-white">Cerca l'alloggio per te:</h1>
+      <h1 className="block font-bold pb-8 text-3xl self-start text-white">
+        Cerca l'alloggio per te:
+      </h1>
       <form onSubmit={submitSearch}>
         <label
           htmlFor="default-search"
@@ -68,7 +74,7 @@ const SearchBar = () => {
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default SearchBar
+export default SearchBar;
