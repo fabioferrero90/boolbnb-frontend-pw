@@ -374,7 +374,7 @@ const FilterModal = () => {
                       id="typeDropdown"
                       className={`z-10 ${
                         isDropdownOpen ? "block" : "hidden"
-                      } w-full p-3 bg-white rounded-lg shadow dark:bg-gray-700 absolute top-12 z-100`}
+                      } w-full p-3 bg-white rounded-lg shadow absolute top-12 z-100`}
                     >
                       <ul
                         className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"
@@ -387,12 +387,12 @@ const FilterModal = () => {
                                 id={type}
                                 type="checkbox"
                                 checked={formData.types.includes(type)}
-                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500"
                                 onChange={handleCheckboxChange}
                               />
                               <label
                                 htmlFor={type}
-                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                                className="ml-2 text-sm font-medium text-gray-900"
                               >
                                 {type}
                               </label>
