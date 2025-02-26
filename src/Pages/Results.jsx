@@ -8,6 +8,7 @@ import FilterModal from "../Components/partials/FilterModal";
 import OrderResults from "../Components/partials/OrderResults";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useParams } from "react-router-dom";
+import loadingimg from "../assets/loading.json";
 
 const Results = () => {
   const {
@@ -20,14 +21,20 @@ const Results = () => {
     results,
   } = useGlobalContext();
   const [liked, setLiked] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { query } = useParams();
-  console.log(query);
 
   useEffect(() => {
-    fetchRatings();
-    fetchResults(query);
-  }, []);
+    const fetchData = async () => {
+      setLoading(true);
+      await fetchRatings();
+      await fetchResults(query);
+      setTimeout(() => setLoading(false), 500);
+    };
+
+    fetchData();
+  }, [query]);
 
   useEffect(() => {
     if (filteredResults && filteredResults.length > 0) {
@@ -93,7 +100,26 @@ const Results = () => {
     return ratingObj ? ratingObj.rating_name : "Nessuna Valutazione";
   };
 
-  return filteredResults.length == 0 ? (
+  return loading ? (
+    <div className="mx-auto max-w-screen-xl py-8">
+      <div className="flex justify-center flex-col p-5">
+        <Player
+          autoplay
+          loop
+          src={loadingimg}
+          style={{ height: "200px", width: "200px" }}
+        >
+          <Controls
+            visible={false}
+            buttons={["play", "repeat", "frame", "debug"]}
+          />
+        </Player>
+        <h1 className="text-2xl text-center py-5">
+          Sto caricando gli alloggi...
+        </h1>
+      </div>
+    </div>
+  ) : filteredResults.length == 0 ? (
     <div className="mx-auto max-w-screen-xl py-8">
       <div className="flex justify-center flex-col p-5">
         <Player
@@ -109,7 +135,7 @@ const Results = () => {
         </Player>
         {(results.length == 0 && (
           <>
-            <h1 className="text-2xl  text-center py-5">
+            <h1 className="text-2xl text-center py-5">
               Nessun risultato trovato
             </h1>
             <a
@@ -121,7 +147,7 @@ const Results = () => {
           </>
         )) || (
           <>
-            <h1 className="text-2xl  text-center py-5">
+            <h1 className="text-2xl text-center py-5">
               Nessun risultato trovato utilizzando questi filtri
             </h1>
             <a
@@ -211,9 +237,9 @@ const Results = () => {
                 <div className="flex justify-center items-center pt-3 pb-1 text-xs">
                   <FaHeart className="w-5 h-5 text-red-400 " />
                   <span className="px-1 font-bold">{house.likes}</span>-
-                  <span className="px-1 font-bold">
-                    {`${getRatingName(house.avg_rating)} -`}
-                  </span>
+                  <span className="px-1 font-bold">{`${getRatingName(
+                    house.avg_rating
+                  )} -`}</span>
                   <span className="px-1 text-gray-500">
                     {house.reviews} recensioni
                   </span>
