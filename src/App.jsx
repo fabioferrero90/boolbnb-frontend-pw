@@ -11,7 +11,7 @@ const App = () => {
         <Routes>
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
-            <Route path="/results" Component={Results} />
+            <Route path="/results/:query" Component={Results} />
           </Route>
         </Routes>
       </BrowserRouter>

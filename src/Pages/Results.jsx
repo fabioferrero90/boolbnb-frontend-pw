@@ -7,6 +7,7 @@ import axios from "axios";
 import FilterModal from "../Components/partials/FilterModal";
 import OrderResults from "../Components/partials/OrderResults";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import { useParams } from "react-router-dom";
 
 const Results = () => {
   const {
@@ -19,11 +20,13 @@ const Results = () => {
   } = useGlobalContext();
   const [liked, setLiked] = useState([]);
 
-  // DEBUG
-  // useEffect(() => {
-  //   fetchRatings();
-  //   fetchResults("a");
-  // }, []);
+  const { query } = useParams();
+  console.log(query);
+
+  useEffect(() => {
+    fetchRatings();
+    fetchResults(query);
+  }, []);
 
   useEffect(() => {
     if (filteredResults && filteredResults.length > 0) {

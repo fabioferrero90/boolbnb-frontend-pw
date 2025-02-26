@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
-  const { fetchResults, filteredResults } = useGlobalContext();
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -13,14 +12,8 @@ const SearchBar = () => {
 
   const submitSearch = (e) => {
     e.preventDefault();
-    fetchResults(search);
+    navigate("/results/" + search);
   };
-
-  useEffect(() => {
-    if (filteredResults && filteredResults.length > 0) {
-      navigate("/results");
-    }
-  }, [filteredResults, navigate]);
 
   useEffect(() => {
     setSearch("");
