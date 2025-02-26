@@ -9,6 +9,7 @@ import OrderResults from "../Components/partials/OrderResults";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useParams } from "react-router-dom";
 import loadingimg from "../assets/loading.json";
+import notFound from "../assets/notfound.json";
 
 const Results = () => {
   const {
@@ -127,7 +128,7 @@ const Results = () => {
         <Player
           autoplay
           loop
-          src="https://lottie.host/555f7b66-f5ae-4f62-9394-c79bd5665747/5dO2bW2BdR.json"
+          src={notFound}
           style={{ height: "200px", width: "200px" }}
         >
           <Controls
