@@ -47,7 +47,7 @@ const Header = ( {headerMenu} ) => {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 border-gray-700">
             {headerMenu.map(item => (
               <li key={item.key}>
-                <a href="#" className="lock py-2 px-3 rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page" onClick={() => navigate(item.route)}>{item.name} </a>
+                <a href="#" className="lock py-2 px-3 text-xs rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page" onClick={() => navigate(item.route)}>{item.name} </a>
               </li>
             ))}
           </ul>

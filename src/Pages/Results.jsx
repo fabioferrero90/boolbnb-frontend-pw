@@ -5,21 +5,43 @@ import { MdMeetingRoom, MdWc } from "react-icons/md";
 import { PiResizeLight } from "react-icons/pi";
 import axios from "axios";
 import FilterModal from "../Components/partials/FilterModal";
+import OrderResults from "../Components/partials/OrderResults";
 
 const Results = () => {
-  const { filteredResults, setFilteredResults, fetchResults, ratingNames, fetchRatings } = useGlobalContext();
+  const { filteredResults, setFilteredResults, fetchResults, ratingNames, fetchRatings, orderedBy } = useGlobalContext();
   const [liked, setLiked] = useState([]);
 
-  useEffect(() => {
-    fetchRatings();
-    fetchResults("a");
-  }, []);
+  // DEBUG
+  // useEffect(() => {
+  //   fetchRatings();
+  //   fetchResults("a");
+  // }, []);
 
   useEffect(() => {
     if (filteredResults && filteredResults.length > 0) {
       setLiked(filteredResults.map((house) => house.liked || false));
     }
   }, [filteredResults]);
+
+  useEffect(() => {
+    if (orderedBy) {
+      let sortedResults = [...filteredResults];
+      switch (orderedBy) {
+        case "price-asc":
+          sortedResults.sort((a, b) => a.price_pernight - b.price_pernight);
+          break;
+        case "price-desc":
+          sortedResults.sort((a, b) => b.price_pernight - a.price_pernight);
+          break;
+        case "most-liked":
+          sortedResults.sort((a, b) => b.likes - a.likes);
+          break;
+        default:
+          break;
+      }
+      setFilteredResults(sortedResults);
+    }
+  }, [orderedBy]);
 
   const manageLike = async (id, index) => {
     try {
@@ -61,8 +83,11 @@ const Results = () => {
 
   return (
     <div className="mx-auto max-w-screen-xl">
-      <FilterModal />
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-8">
+      <div className="w-full mx-auto flex justify-between items-center gap-8 p-8">
+        <FilterModal />
+        <OrderResults />
+      </div>
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-8">
         {filteredResults &&
           filteredResults.map((house, index) => (
             <div
@@ -81,10 +106,16 @@ const Results = () => {
                   <div>
                     <a href="#">
                       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-                        {house.name}
+                        <p>
+                          {house.name}
+                        </p>
+                        <p className="mb-1 font-normal text-xs text-gray-700">
+                          {house.address.city} [{house.address.province}] - {house.address.address}
+                        </p>
                       </h5>
                     </a>
                     <a href="#">
+                      <span className="text-xs">Tipologia: </span>
                       <span className="mb-3 text-xs tracking-tight text-gray-500 bg-gray-200 px-3 rounded-full">
                         {house.type}
                       </span>

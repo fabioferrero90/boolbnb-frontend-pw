@@ -6,6 +6,7 @@ const GlobalContext = createContext();
 const GlobalProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
+  const [orderedBy, setOrderedBy] = useState("most-liked");
 
   const congiunzioni = ['e', 'o', 'ma', 'anche', 'però', 'oppure', 'anzi', 'quindi', 'dunque', 'cioè', 'di'];
 
@@ -40,6 +41,10 @@ const GlobalProvider = ({ children }) => {
       });
   }
 
+  const handleOrderByChange = (e) => {
+    setOrderedBy(e.target.value);
+  }
+
   const value = {
     results,
     filteredResults,
@@ -48,6 +53,9 @@ const GlobalProvider = ({ children }) => {
     fetchResults,
     ratingNames,
     fetchRatings,
+    orderedBy,
+    setOrderedBy,
+    handleOrderByChange
   };
 
   return (

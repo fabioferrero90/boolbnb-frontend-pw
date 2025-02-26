@@ -3,8 +3,10 @@ import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 
 const headerMenu = [
-  { route: "/", name: "Inserisci appartamento", key: "create" },
-  { route: "/results", name: "Risultati Ricerca", key: "results" }
+  { route: "/", name: "Inserisci appartamento", key: "createnew" },
+  { route: "/", name: "Perchè sceglierci?", key: "whychoose" },
+  { route: "/", name: "Programma Affiliazione", key: "affiliateprogram" },
+  // { route: "/results", name: "Risultati Ricerca", key: "results" }
 ];
 
 const DefaultLayout = () => {
