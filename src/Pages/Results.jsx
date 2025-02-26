@@ -113,7 +113,7 @@ const Results = () => {
       </div>
     </div>
   ) : (
-    <div className="mx-auto max-w-screen-xl">
+    <div className="mx-auto max-w-screen-xl pb-8">
       <div className="w-full mx-auto flex justify-between items-center gap-8 p-8">
         <FilterModal />
         <OrderResults />
