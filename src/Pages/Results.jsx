@@ -6,10 +6,17 @@ import { PiResizeLight } from "react-icons/pi";
 import axios from "axios";
 import FilterModal from "../Components/partials/FilterModal";
 import OrderResults from "../Components/partials/OrderResults";
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 const Results = () => {
-  const { filteredResults, setFilteredResults, fetchResults, ratingNames, fetchRatings, orderedBy } = useGlobalContext();
+  const {
+    filteredResults,
+    setFilteredResults,
+    fetchResults,
+    ratingNames,
+    fetchRatings,
+    orderedBy,
+  } = useGlobalContext();
   const [liked, setLiked] = useState([]);
 
   // DEBUG
@@ -83,22 +90,29 @@ const Results = () => {
   };
 
   return filteredResults.length == 0 ? (
-      <div className="mx-auto max-w-screen-xl">
-        <div className="flex justify-center flex-col p-5">
+    <div className="mx-auto max-w-screen-xl py-8">
+      <div className="flex justify-center flex-col p-5">
         <Player
           autoplay
           loop
-          src="https://assets3.lottiefiles.com/packages/lf20_UJNc2t.json"
-          style={{ height: '300px', width: '300px' }}
+          src="https://lottie.host/555f7b66-f5ae-4f62-9394-c79bd5665747/5dO2bW2BdR.json"
+          style={{ height: "200px", width: "200px" }}
         >
-          <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
+          <Controls
+            visible={false}
+            buttons={["play", "repeat", "frame", "debug"]}
+          />
         </Player>
-          <h1 className="text-2xl font-bold text-center">Nessun risultato trovato</h1>
-        </div>
+        <h1 className="text-2xl  text-center py-5">Nessun risultato trovato</h1>
+        <a
+          href="/"
+          className="mx-auto max-w-[50%] justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white custom-bg-color-primary rounded-lg hover:custom-teal-bg focus:ring-4 focus:outline-none focus:ring-blue-300"
+        >
+          Torna alla homepage
+        </a>
       </div>
-  
+    </div>
   ) : (
-
     <div className="mx-auto max-w-screen-xl">
       <div className="w-full mx-auto flex justify-between items-center gap-8 p-8">
         <FilterModal />
@@ -123,11 +137,10 @@ const Results = () => {
                   <div>
                     <a href="#">
                       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-                        <p>
-                          {house.name}
-                        </p>
+                        <p>{house.name}</p>
                         <p className="mb-1 font-normal text-xs text-gray-700">
-                          {house.address.city} [{house.address.province}] - {house.address.address}
+                          {house.address.city} [{house.address.province}] -{" "}
+                          {house.address.address}
                         </p>
                       </h5>
                     </a>
@@ -221,6 +234,5 @@ const Results = () => {
     </div>
   );
 };
-
 
 export default Results;
