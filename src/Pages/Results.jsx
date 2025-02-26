@@ -25,6 +25,8 @@ const Results = () => {
 
   const { query } = useParams();
 
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -83,9 +85,9 @@ const Results = () => {
       setFilteredResults(updatedResults);
 
       if (!liked[index]) {
-        await axios.put(`http://localhost:3000/houses/like/${id}`);
+        await axios.put(`${APIendpoint}/houses/like/${id}`);
       } else {
-        await axios.put(`http://localhost:3000/houses/dislike/${id}`);
+        await axios.put(`${APIendpoint}/houses/dislike/${id}`);
       }
     } catch (error) {
       console.error("Error updating like status:", error);

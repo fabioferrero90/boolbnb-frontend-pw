@@ -8,9 +8,11 @@ const HouseGrid = () => {
   const [liked, setLiked] = useState([false, false, false]);
   const [houses, setHouses] = useState([]);
 
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
   const fetchHouses = () => {
     axios
-      .get("http://localhost:3000/houses/mostliked")
+      .get(`${APIendpoint}/houses/mostliked`)
       .then((res) => {
         setHouses(res.data);
       })
@@ -22,12 +24,12 @@ const HouseGrid = () => {
   const manageLike = (id, index) => {
     setLiked(liked.map((like, i) => (i === index ? !like : like)));
     if (!liked[index]) {
-      axios.put(`http://localhost:3000/houses/like/${id}`).then((response) => {
+      axios.put(`${APIendpoint}/houses/like/${id}`).then((response) => {
         fetchHouses();
       });
     } else {
       axios
-        .put(`http://localhost:3000/houses/dislike/${id}`)
+        .put(`${APIendpoint}/houses/dislike/${id}`)
         .then((response) => {
           fetchHouses();
         });
@@ -39,7 +41,7 @@ const HouseGrid = () => {
   }, []);
 
   return (
-    <div className="max-w-[80%] mx-auto flex flex-col items-center justify-center pt-20">
+    <div className="xl:w-6xl md:w-3xl sm:w-xl w-sm mx-auto flex flex-col items-center justify-center pt-20">
       <h1 className="block font-bold pb-8 text-3xl self-start text-white">
         Preferiti dagli utenti:
       </h1>

@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <>
     <div className="h-[8vh] flex flex-col items-center justify-center custom-bg-color-primary p-6">
-      <span className="max-w-[80%] text-center text-xs text-gray-200">Questo progetto è sviluppato da
+      <span className="max-w-[80%] text-center text-sm text-gray-200">Questo progetto è sviluppato da
         <a href="https://github.com/fabioferrero90"><strong> @Fabio</strong></a>,
         <a href="https://github.com/luciameneghin"><strong> @Lucia</strong></a> e
         <a href="https://github.com/Stefanospedicato"><strong> @Stefano </strong></a>
@@ -76,10 +76,10 @@ const Footer = () => {
           <div className="sm:flex sm:items-center sm:justify-between">
             <span className="text-sm  sm:text-center text-gray-400">
               © 2025{" "}
-              <a href="https://flowbite.com/" className="hover:underline">
-                BoolB&B™
+              <a href="#" className="hover:underline">
+                <strong>BoolB&B™ </strong>
               </a>
-              . All Rights Reserved.
+            <span>All Rights Reserved</span>
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a

@@ -9,6 +9,9 @@ const GlobalProvider = ({ children }) => {
   const [typeVariables, setTypeVariables] = useState([]);
   const [orderedBy, setOrderedBy] = useState("most-liked");
 
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
+  console.log(APIendpoint);
   const congiunzioni = [
     "e",
     "o",
@@ -33,7 +36,7 @@ const GlobalProvider = ({ children }) => {
   const fetchResults = (value) => {
     const query = filtraParoleChiave(value);
     axios
-      .get(`http://localhost:3000/houses/search?q=${query}`)
+      .get(`${APIendpoint}/houses/search?q=${query}`)
       .then((res) => {
         setResults(res.data);
         setFilteredResults(res.data);
@@ -54,7 +57,7 @@ const GlobalProvider = ({ children }) => {
   const [ratingNames, setRatingNames] = useState([]);
   const fetchRatings = () => {
     axios
-      .get("http://localhost:3000/reviews/ratings")
+      .get(`${APIendpoint}/reviews/ratings`)
       .then((res) => {
         setRatingNames(res.data);
       })

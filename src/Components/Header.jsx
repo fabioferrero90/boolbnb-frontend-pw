@@ -13,8 +13,8 @@ const Header = ( {headerMenu} ) => {
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
-              <span className="sr-only">Open user menu</span>
-              <img className="w-12 h-12 rounded-full" src="/user-propic/user.jpeg" alt="user photo"/>
+              <span className="sr-only">Apri Menu Utente</span>
+              <img className="w-12 h-12 rounded-full cursor-pointer" src="/user-propic/user.jpeg" alt="user photo"/>
             </button>
             <div className="z-50 hidden my-4 text-base list-none divide-y rounded-lg shadow-sm bg-gray-700 divide-gray-600" id="user-dropdown">
               <div className="px-4 py-3">
@@ -47,7 +47,7 @@ const Header = ( {headerMenu} ) => {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 border-gray-700">
             {headerMenu.map(item => (
               <li key={item.key}>
-                <a href="#" className="lock py-2 px-3 text-xs rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page" onClick={() => navigate(item.route)}>{item.name} </a>
+                <a href="#" className="lock py-2 px-3 text-l rounded-sm md:p-0 text-white md:hover:text-teal-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700" aria-current="page" onClick={() => navigate(item.route)}>{item.name} </a>
               </li>
             ))}
           </ul>
