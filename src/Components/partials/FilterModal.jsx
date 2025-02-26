@@ -5,7 +5,7 @@ import { MdMeetingRoom, MdWc } from "react-icons/md";
 import { useGlobalContext } from "../../Contexts/GlobalContext";
 
 const FilterModal = () => {
-  const { results, setFilteredResults } = useGlobalContext();
+  const { results, setFilteredResults, typeVariables } = useGlobalContext();
 
   const initialFormData = {
     minPrice: "",
@@ -17,6 +17,7 @@ const FilterModal = () => {
   };
 
   const [formData, setFormData] = useState(initialFormData);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = (e) => {
@@ -45,8 +46,8 @@ const FilterModal = () => {
         result.rooms >= formData.rooms &&
         result.beds >= formData.bedrooms &&
         result.bathrooms >= formData.bathrooms &&
-        (result.price_pernight >= (formData.minPrice || 0)) &&
-        (result.price_pernight <= (formData.maxPrice || 999999999))
+        result.price_pernight >= (formData.minPrice || 0) &&
+        result.price_pernight <= (formData.maxPrice || 999999999)
       );
     });
     setFilteredResults(handledResults);
@@ -106,7 +107,10 @@ const FilterModal = () => {
                   <div className="pb-3">
                     <div className="relative mb-6">
                       <label htmlFor="labels-range-input" className="text-sm">
-                        Metri quadri minimi: <strong>{formData.minMq == 500 ? "500+" : formData.minMq} Mq</strong>
+                        Metri quadri minimi:{" "}
+                        <strong>
+                          {formData.minMq == 500 ? "500+" : formData.minMq} Mq
+                        </strong>
                       </label>
                       <input
                         id="labels-range-input"
@@ -327,7 +331,62 @@ const FilterModal = () => {
                       </button>
                     </div>
                   </div>
-                  <div className="flex justify-between py-5">
+                  <div className="flex-col flex items-center justify-center relative w-full">
+                    <button
+                      id="type-dropdown"
+                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      className="justify-between w-full bg-primary-700 hover:bg-primary-800 rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center border border-gray-300 text-gray-500"
+                      type="button"
+                    >
+                      Tipologia struttura
+                      <svg
+                        className="w-4 h-4 ml-2 "
+                        aria-hidden="true"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M19 9l-7 7-7-7"
+                        ></path>
+                      </svg>
+                    </button>
+                    <div
+                      id="typeDropdown"
+                      className={`z-10 ${
+                        isDropdownOpen ? "block" : "hidden"
+                      } w-full p-3 bg-white rounded-lg shadow dark:bg-gray-700 absolute top-12 z-100`}
+                    >
+                      <ul
+                        className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm"
+                        aria-labelledby="type-dropdown"
+                      >
+                        {typeVariables?.map((type, index) => {
+                          return (
+                            <li key={index} className="flex items-center">
+                              <input
+                                id={type}
+                                type="checkbox"
+                                value=""
+                                className="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600"
+                              />
+                              <label
+                                htmlFor={type}
+                                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+                              >
+                                {type}
+                              </label>
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex justify-between pb-5">
                     <div className="relative">
                       <input
                         type="text"
