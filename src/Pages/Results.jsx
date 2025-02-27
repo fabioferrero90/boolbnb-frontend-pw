@@ -125,6 +125,7 @@ const Results = () => {
     </div>
   ) : filteredResults.length == 0 ? (
     <div className="mx-auto max-w-screen-xl py-8">
+      <SearchBar />
       <div className="flex justify-center flex-col p-5">
         <Player
           autoplay
