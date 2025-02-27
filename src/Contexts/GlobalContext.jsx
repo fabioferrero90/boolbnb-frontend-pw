@@ -8,6 +8,7 @@ const GlobalProvider = ({ children }) => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [typeVariables, setTypeVariables] = useState([]);
   const [orderedBy, setOrderedBy] = useState("most-liked");
+  const [house, setHouse] = useState({});
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -68,6 +69,17 @@ const GlobalProvider = ({ children }) => {
     setOrderedBy(e.target.value);
   };
 
+  const fetchHouse = (id) => {
+    axios.get(`${APIendpoint}/houses/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setHouse(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   const value = {
     results,
     filteredResults,
@@ -80,6 +92,8 @@ const GlobalProvider = ({ children }) => {
     orderedBy,
     setOrderedBy,
     handleOrderByChange,
+    fetchHouse,
+    house
   };
 
   return (
