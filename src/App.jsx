@@ -3,7 +3,7 @@ import { GlobalProvider } from "./Contexts/GlobalContext";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
 import Results from "./Pages/Results";
-import InsertHouse from "./Pages/InsertHouse";
+import HouseDetails from "./Pages/HouseDetails";
 
 const App = () => {
   return (
@@ -13,8 +13,7 @@ const App = () => {
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
             <Route path="/results/:query" Component={Results} />
-            <Route path="/inserthouse" Component={InsertHouse} />
-            <Route path="*" element={<h1>404</h1>} />
+            <Route path="/houses/:id" Component={HouseDetails} />
           </Route>
         </Routes>
       </BrowserRouter>
