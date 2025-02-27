@@ -35,3 +35,9 @@
   -ms-user-select: none;     /* Internet Explorer/Edge */
   user-select: none;         /* Standard */
 }
+
+.headbg{
+  background: linear-gradient(270deg, rgba(41, 26, 139, 0.712) 0%, rgba(41, 8, 85, 0.594) 68%), url(/sfondo/crociera-caraibi.webp);
+  background-size: cover;
+  background-position: center;
+}
