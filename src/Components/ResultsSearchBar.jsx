@@ -1,11 +1,13 @@
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
   const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
+  const { query } = useParams();
+  const { filteredResults } = useGlobalContext();
 
   const handleSearch = (e) => {
     setSearch(e.target.value);
@@ -25,7 +27,7 @@ const SearchBar = () => {
   }, []);
 
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto px-8">
       <form onSubmit={submitSearch} className="pt-8 mx-auto max-w-screen-xl">
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -52,7 +54,7 @@ const SearchBar = () => {
             onClick={() => setAlert(false)}
             onChange={handleSearch}
             className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
-            placeholder="Cerca per città, servizio, nome..."
+            placeholder={`Risultati per la ricerca: ${query} - ${filteredResults.length} risultati`}
           />
           <p className={`absolute bg-red-700 text-white px-3 py-1 rounded-lg left-[4%] top-[90%] animate-bounce ${alert ? "block" : "hidden"}`}>
             Inserisci una parola chiave per iniziare la ricerca
@@ -61,8 +63,7 @@ const SearchBar = () => {
             type="submit"
             className="cursor-pointer text-white absolute end-2.5 bottom-2.5 custom-bg-color-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
           >
-            Cerca
-          </button>
+            Cerca di nuovo          </button>
         </div>
       </form>
     </div>
