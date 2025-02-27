@@ -10,6 +10,7 @@ import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import { useParams } from "react-router-dom";
 import loadingimg from "../assets/loading.json";
 import notFound from "../assets/notfound.json";
+import SearchBar from "../Components/ResultsSearchBar";
 
 const Results = () => {
   const {
@@ -165,6 +166,7 @@ const Results = () => {
     </div>
   ) : (
     <div className="mx-auto max-w-screen-xl pb-8">
+      <SearchBar />
       <div className="w-full mx-auto flex justify-between items-center gap-8 p-8">
         <FilterModal />
         <OrderResults />
