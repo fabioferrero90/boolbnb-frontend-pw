@@ -6,7 +6,6 @@ const headerMenu = [
   { route: "/inserthouse", name: "Inserisci appartamento", key: "inserthouse" },
   { route: "/", name: "Perchè sceglierci?", key: "whychoose" },
   { route: "/", name: "Programma Affiliazione", key: "affiliateprogram" },
-  // { route: "/results", name: "Risultati Ricerca", key: "results" }
 ];
 
 const DefaultLayout = () => {
