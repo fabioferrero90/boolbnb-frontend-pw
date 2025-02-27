@@ -63,25 +63,40 @@ const HouseGrid = () => {
               </a>
               <div className="p-5 flex flex-col flex-grow">
                 <div>
-                  <a href="#">
-                    <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
-                      {house.name}
-                    </h5>
-                  </a>
+                <section className="flex justify-between pb-2">
+                  <div>
+                    <a href="#">
+                      <h5 className="text-2xl font-bold tracking-tight text-gray-900">
+                        <p>{house.name}</p>
+                        <p className="mb-1 font-normal text-xs text-gray-700">
+                          {house.address.city} [{house.address.province}] -{" "}
+                          {house.address.address}
+                        </p>
+                      </h5>
+                    </a>
+                  </div>
+                  <div>
+                    <p className="flex items-center pt-1">
+                      <span className="text-xs text-gray-800 pb-2">
+                        <strong className="text-lg">
+                          {house.price_pernight}
+                        </strong>
+                        € / Notte
+                      </span>
+                    </p>
+                  </div>
+                </section>
                   <p className="mb-3 font-normal text-gray-700">
                     {house.abstract}
                   </p>
                 </div>
-                <div className="flex items-center pb-4 text-xs">
+                <div className="flex justify-center items-center pt-3 pb-1 text-xs">
                   <FaHeart className="w-5 h-5 text-red-400 " />
                   <span className="px-1 font-bold">{house.likes}</span>-
-                  <span className="px-1 font-bold">
-                    {
+                  <span className="px-1 font-bold">{
                       ratingNames.find((r) => r.id === Number(house.avg_rating))
                         ?.rating_name
-                    }
-                  </span>
-                  -
+                    }</span>
                   <span className="px-1 text-gray-500">
                     {house.reviews} recensioni
                   </span>
