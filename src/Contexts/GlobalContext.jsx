@@ -11,7 +11,6 @@ const GlobalProvider = ({ children }) => {
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
-  console.log(APIendpoint);
   const congiunzioni = [
     "e",
     "o",
@@ -46,7 +45,6 @@ const GlobalProvider = ({ children }) => {
             types.push(house.type);
           }
         });
-        console.log(types);
         setTypeVariables(types);
       })
       .catch((error) => {

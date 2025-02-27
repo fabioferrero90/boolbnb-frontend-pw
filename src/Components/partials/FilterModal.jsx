@@ -52,8 +52,6 @@ const FilterModal = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
-
     const handledResults = results.filter((result) => {
       return (
         result.size >= formData.minMq &&
