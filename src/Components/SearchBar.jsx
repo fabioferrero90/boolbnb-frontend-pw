@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
+  const [alert, setAlert] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -12,6 +13,10 @@ const SearchBar = () => {
 
   const submitSearch = (e) => {
     e.preventDefault();
+    if (search === "") {
+      setAlert(true);
+      return;
+    }
     navigate("/results/" + search);
   };
 
@@ -48,11 +53,14 @@ const SearchBar = () => {
               type="search"
               id="default-search"
               value={search}
+              onClick={() => setAlert(false)}
               onChange={handleSearch}
               className="block w-full size-6xl p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
               placeholder="Cerca l'alloggio che fa per te..."
-              required
             />
+            <p className={"absolute bg-red-700 text-white px-3 py-1 rounded-lg left-[4%] top-[90%] animate-bounce" + (alert ? "block" : "hidden")}>
+              Inserisci una parola chiave per iniziare la ricerca
+            </p>
             <button
               type="submit"
               className="cursor-pointer text-white absolute end-2.5 bottom-2.5 custom-bg-color-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
