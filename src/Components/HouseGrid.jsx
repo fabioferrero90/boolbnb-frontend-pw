@@ -86,8 +86,8 @@ const HouseGrid = () => {
                     </p>
                   </div>
                 </section>
-                  <p className="mb-3 font-normal text-gray-700">
-                    {house.abstract}
+                  <p className="my-3 font-normal text-gray-500 h-20 overflow-hidden">
+                    {house.abstract.length > 120 ? house.abstract.slice(0,120)+"..." : house.abstract}
                   </p>
                 </div>
                 <div className="flex justify-center items-center pt-3 pb-1 text-xs">
