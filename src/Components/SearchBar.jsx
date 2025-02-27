@@ -56,7 +56,7 @@ const SearchBar = () => {
               onClick={() => setAlert(false)}
               onChange={handleSearch}
               className="block w-full size-6xl p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:border-white"
-              placeholder="Cerca l'alloggio che fa per te..."
+              placeholder="Cerca per città, servizio, nome..."
             />
             <p className={"absolute bg-red-700 text-white px-3 py-1 rounded-lg left-[4%] top-[90%] animate-bounce " + (alert ? "block" : "hidden")}>
               Inserisci una parola chiave per iniziare la ricerca
