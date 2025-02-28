@@ -6,6 +6,7 @@ import Results from "./Pages/Results";
 import HouseDetails from "./Pages/HouseDetails";
 import InsertHouse from "./Pages/InsertHouse";
 import InsertModule from "./Components/InsertModule";
+import Reviews from "./Components/Reviews";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/inserthouse" Component={InsertHouse} />
             <Route path="/insertnew" Component={InsertModule} />
             <Route path="/houses/:id" Component={HouseDetails} />
+            <Route path="/reviews/:id" Component={Reviews} />
           </Route>
         </Routes>
       </BrowserRouter>

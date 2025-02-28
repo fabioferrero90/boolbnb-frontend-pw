@@ -45,3 +45,9 @@
 .anchor-target{
   scroll-margin-top: 10vh;
 }
+
+.img-gallery{
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
