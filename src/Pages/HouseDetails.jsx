@@ -59,11 +59,11 @@ const HouseDetails = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl p-8 items-center flex flex-col lg:flex-row">
-        <div className="w-[50%] mb-5 mx-auto w-full-sm">
+      <div className="mx-auto max-w-screen-xl p-8 flex flex-col lg:flex-row items-center">
+        <div className="w-full lg:w-1/2 mb-5 lg:mb-0">
           <Gallery />
         </div>
-        <div className="w-full max-w-2xl mt-8 lg:mt-0 p-5 ml-5 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div className="w-full lg:w-1/2 mt-8 lg:mt-0 p-5 bg-white border border-gray-200 rounded-lg shadow-sm">
           <h1 className="text-2xl font-bold">{name}</h1>
           <h3 className="text-lg text-gray-700">{host_name}</h3>
           <p className="mt-4">{abstract}</p>
