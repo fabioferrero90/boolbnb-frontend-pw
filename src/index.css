@@ -41,3 +41,7 @@
   background-size: cover;
   background-position: center;
 }
+
+.anchor-target{
+  scroll-margin-top: 10vh;
+}

@@ -5,6 +5,7 @@ import Home from "./Pages/Home";
 import Results from "./Pages/Results";
 import HouseDetails from "./Pages/HouseDetails";
 import InsertHouse from "./Pages/InsertHouse";
+import InsertModule from "./Components/InsertModule";
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <Route path="/" Component={Home} />
             <Route path="/results/:query" Component={Results} />
             <Route path="/inserthouse" Component={InsertHouse} />
+            <Route path="/insertnew" Component={InsertModule} />
             <Route path="/houses/:id" Component={HouseDetails} />
           </Route>
         </Routes>
