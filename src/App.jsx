@@ -13,13 +13,13 @@ const App = () => {
     <GlobalProvider>
       <BrowserRouter>
         <Routes>
-          <Route Component={DefaultLayout}>
-            <Route path="/" Component={Home} />
-            <Route path="/results/:query" Component={Results} />
-            <Route path="/inserthouse" Component={InsertHouse} />
-            <Route path="/insertnew" Component={InsertModule} />
-            <Route path="/houses/:id" Component={HouseDetails} />
-            <Route path="/reviews/:id" Component={Reviews} />
+          <Route element={<DefaultLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/results/:query" element={<Results />} />
+            <Route path="/inserthouse" element={<InsertHouse />} />
+            <Route path="/insertnew" element={<InsertModule />} />
+            <Route path="/houses/:id" element={<HouseDetails />} />
+            <Route path="/reviews/:id" element={<Reviews />} />
           </Route>
         </Routes>
       </BrowserRouter>

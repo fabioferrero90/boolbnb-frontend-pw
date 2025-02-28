@@ -1,7 +1,6 @@
 .slider-container {
   display: flex;
   transition: transform 300ms ease-in-out;
-  overflow: hidden;
 }
 
 .slider-item {
