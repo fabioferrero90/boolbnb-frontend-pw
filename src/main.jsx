@@ -8,6 +8,7 @@ import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
+
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />

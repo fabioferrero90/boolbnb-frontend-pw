@@ -5,6 +5,13 @@ const sections = [
     title: "1. Dati personali",
     fields: [
       {
+        label: "Nome dell'Host",
+        type: "text",
+        id: "host-name",
+        description:
+          "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
+      },
+      {
         label: "Nome della struttura",
         type: "text",
         id: "structure-name",
@@ -12,11 +19,25 @@ const sections = [
           "Questo sarà il nome visualizzato dagli utenti per identificare la tua struttura",
       },
       {
-        label: "Nome dell'Host",
+        label: "Numero di Telefono",
         type: "text",
-        id: "host-name",
+        id: "host-phone",
         description:
-          "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
+          "Questo sarà il numero di telefono a cui gli utenti potranno contattarti",
+      },
+      {
+        label: "Nome della struttura",
+        type: "text",
+        id: "host-mail",
+        description:
+          "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
+      },
+      {
+        label: "Indirizzo della struttura",
+        type: "addressAPI",
+        id: "structure-address",
+        description:
+          "Inizia a scrivere l'indirizzo completo di numero civico e selezionane uno tra quelli proposti",
       },
       {
         label: "Descrizione della struttura",
@@ -60,58 +81,8 @@ const sections = [
   },
   {
     id: "section3",
-    menuName: "Indirizzo",
-    title: "3. Indirizzo della struttura",
-    fields: [
-      {
-        label: "Stato",
-        type: "text",
-        id: "address_state",
-        description: "In quale stato si trova la struttura?",
-      },
-      {
-        label: "Regione",
-        type: "text",
-        id: "address_region",
-        description: "In quale regione si trova la struttura?",
-      },
-      {
-        label: "Provincia",
-        type: "text",
-        id: "address_province",
-        description: "In quale provincia si trova la struttura?",
-      },
-      {
-        label: "Città",
-        type: "text",
-        id: "address_city",
-        description: "In quale città si trova la struttura?",
-      },
-      {
-        label: "CAP",
-        type: "text",
-        id: "address_cap",
-        description: "Qual'è il CAP della città dove si trova la struttura?",
-      },
-      {
-        label: "Via, Corso, Piazza",
-        type: "text",
-        id: "address_street",
-        description: "In quale via si trova la struttura?",
-      },
-      {
-        label: "Civico",
-        type: "text",
-        id: "address_number",
-        description: "A quale civico si trova la struttura?",
-      },
-
-    ],
-  },
-  {
-    id: "section4",
     menuName: "Contatti",
-    title: "4. Dati di contatto",
+    title: "3. Dati di contatto",
     fields: [
       {
         label: "Radio Buttons",
@@ -130,9 +101,9 @@ const sections = [
     ],
   },
   {
-    id: "section5",
+    id: "section4",
     menuName: "Foto",
-    title: "5. Foto della struttura",
+    title: "4. Foto della struttura",
     fields: [
       {
         label: "Continua",
@@ -151,9 +122,9 @@ const sections = [
     ],
   },
   {
-    id: "section6",
+    id: "section5",
     menuName: "Conferma",
-    title: "6. Conferma Inserimento",
+    title: "5. Conferma Inserimento",
     fields: [
       {
         label: "Conferma",
