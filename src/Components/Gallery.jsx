@@ -27,22 +27,47 @@ const Gallery = () => {
         className="mySwiper2"
       >
         <SwiperSlide>
-          <img src={house.cover_image} alt={house.name} />
+          <img
+            src={house.cover_image}
+            alt={house.name}
+            className="rounded img-gallery"
+          />
         </SwiperSlide>
+        {gallery &&
+          gallery.map((image) => (
+            <SwiperSlide key={image.id}>
+              <img
+                src={image.photo_url}
+                alt={image.house_id}
+                className="rounded img-gallery"
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
         spaceBetween={10}
-        slidesPerView={gallery.length}
+        slidesPerView={4}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper"
+        className="mySwiper mt-3"
       >
+        <SwiperSlide>
+          <img
+            src={house.cover_image}
+            alt={house.name}
+            className="rounded img-gallery"
+          />
+        </SwiperSlide>
         {gallery &&
           gallery.map((image) => (
             <SwiperSlide key={image.id}>
-              <img src={image.photo_url} alt={image.house_id} />
+              <img
+                src={image.photo_url}
+                alt={image.house_id}
+                className="rounded img-gallery"
+              />
             </SwiperSlide>
           ))}
       </Swiper>
