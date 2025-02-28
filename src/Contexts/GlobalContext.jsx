@@ -9,6 +9,7 @@ const GlobalProvider = ({ children }) => {
   const [typeVariables, setTypeVariables] = useState([]);
   const [orderedBy, setOrderedBy] = useState("most-liked");
   const [house, setHouse] = useState({});
+  const [reviews, setReviews] = useState([]);
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -70,15 +71,27 @@ const GlobalProvider = ({ children }) => {
   };
 
   const fetchHouse = (id) => {
-    axios.get(`${APIendpoint}/houses/${id}`)
+    axios
+      .get(`${APIendpoint}/houses/${id}`)
       .then((res) => {
-        console.log(res.data);
         setHouse(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
+
+  const renderReviews = (id) => {
+    axios
+      .get(`${APIendpoint}/reviews/${id}`)
+      .then((res) => {
+        const reviewsData = Array.isArray(res.data) ? res.data : [res.data];
+        setReviews(reviewsData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const value = {
     results,
@@ -89,11 +102,13 @@ const GlobalProvider = ({ children }) => {
     fetchResults,
     ratingNames,
     fetchRatings,
+    renderReviews,
+    reviews,
     orderedBy,
     setOrderedBy,
     handleOrderByChange,
     fetchHouse,
-    house
+    house,
   };
 
   return (
