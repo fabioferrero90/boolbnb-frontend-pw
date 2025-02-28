@@ -107,9 +107,9 @@ const HouseDetails = () => {
       <div className="mx-auto max-w-screen-xl px-8">
         <div className="flex w-full justify-between flex-col lg:flex-row items-center">
           <p className="w-[80%]">
-            <p>
+            <span>
               <strong>Descrizione: </strong>
-            </p>
+            </span>
             {abstract}
           </p>
           <div className="w-[20%] text-center">

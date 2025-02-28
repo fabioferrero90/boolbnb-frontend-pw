@@ -26,7 +26,7 @@ const Gallery = () => {
         modules={[FreeMode, Navigation, Thumbs]}
         className="mySwiper2"
       >
-        <SwiperSlide>
+        <SwiperSlide key={house.id}>
           <img
             src={house.cover_image}
             alt={house.name}
@@ -51,23 +51,17 @@ const Gallery = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper mt-3"
+        className="mySwiper mt-3 img-scroller rounded"
       >
         <SwiperSlide>
-          <img
-            src={house.cover_image}
-            alt={house.name}
-            className="rounded img-gallery"
-          />
+          <img src={house.cover_image} alt={house.name} className="contain" />
         </SwiperSlide>
         {gallery &&
           gallery.map((image) => (
             <SwiperSlide key={image.id}>
-              <img
-                src={image.photo_url}
-                alt={image.house_id}
-                className="rounded img-gallery"
-              />
+              <div className="img-box">
+                <img src={image.photo_url} alt={image.house_id} className="" />
+              </div>
             </SwiperSlide>
           ))}
       </Swiper>
