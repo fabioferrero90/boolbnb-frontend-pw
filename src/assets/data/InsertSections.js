@@ -1,36 +1,15 @@
 const sections = [
   {
     id: "section1",
-    menuName: "Host",
-    title: "1. Dati personali",
+    menuName: "Info",
+    title: "1. Informazioni Generali",
     fields: [
-      {
-        label: "Nome dell'Host",
-        type: "text",
-        id: "host-name",
-        description:
-          "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
-      },
       {
         label: "Nome della struttura",
         type: "text",
         id: "structure-name",
         description:
           "Questo sarà il nome visualizzato dagli utenti per identificare la tua struttura",
-      },
-      {
-        label: "Numero di Telefono",
-        type: "text",
-        id: "host-phone",
-        description:
-          "Questo sarà il numero di telefono a cui gli utenti potranno contattarti",
-      },
-      {
-        label: "Nome della struttura",
-        type: "text",
-        id: "host-mail",
-        description:
-          "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
       },
       {
         label: "Indirizzo della struttura",
@@ -77,6 +56,12 @@ const sections = [
         id: "beds",
         description: "Quanti letti sono presenti nella struttura?",
       },
+      {
+        label: "Servizi offerti",
+        type: "text",
+        id: "services",
+        description: "Quali servizi offri nella struttura?",
+      },
     ],
   },
   {
@@ -85,18 +70,25 @@ const sections = [
     title: "3. Dati di contatto",
     fields: [
       {
-        label: "Radio Buttons",
-        type: "radio",
-        id: "radio-buttons",
-        options: ["Radio A", "Radio B"],
-        description: "add notes about populating the field",
+        label: "Nome dell'Host",
+        type: "text",
+        id: "host-name",
+        description:
+          "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
       },
       {
-        label: "Checkboxes",
-        type: "checkbox",
-        id: "checkboxes",
-        options: ["Option 1", "Option 2", "Option 3"],
-        description: "add notes about populating the field",
+        label: "Numero di Telefono",
+        type: "text",
+        id: "host-phone",
+        description:
+          "Questo sarà il numero di telefono a cui gli utenti potranno contattarti",
+      },
+      {
+        label: "Indirizzo Mail",
+        type: "text",
+        id: "host-mail",
+        description:
+          "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
       },
     ],
   },
@@ -127,39 +119,39 @@ const sections = [
     title: "5. Conferma Inserimento",
     fields: [
       {
-        label: "Conferma",
+        label: "Condizioni di utilizzo della piattaforma",
         type: "blockquote",
         content: `
           <h4>
             <strong>Termini e Condizioni di BoolB&B</strong>
           </h4>
           <ol>
-            <li className="py-2">
+            <li class="py-2">
               Prima di completare la registrazione della tua struttura su
               BoolB&B, ti invitiamo a leggere attentamente i seguenti
               termini e condizioni. Cliccando sul tasto "Conferma",
               accetti integralmente i presenti termini e condizioni.
             </li>
-            <li className="py-2">
+            <li class="py-2">
               1. <strong>Accettazione dei Termini</strong> Registrando la
               tua struttura su BoolB&B, accetti di rispettare i termini e
               le condizioni qui riportati. Se non sei d'accordo con uno
               qualsiasi dei termini, ti preghiamo di non procedere con la
               registrazione.
             </li>
-            <li className="py-2">
+            <li class="py-2">
               2. <strong>Responsabilità dell'Utente</strong> Sei
               responsabile dell'accuratezza e della veridicità delle
               informazioni fornite sulla tua struttura. BoolB&B non è
               responsabile per eventuali errori o omissioni nelle
               informazioni fornite dagli utenti.
             </li>
-            <li className="py-2">
+            <li class="py-2">
               3. <strong>Uso del Sito</strong> L'uso del sito BoolB&B è
               consentito solo a scopi leciti. Non è consentito l'uso del
               sito per attività fraudolente, ingannevoli o illegali.
             </li>
-            <li className="py-2">
+            <li class="py-2">
               4. <strong>Modifiche ai Termini</strong> BoolB&B si riserva
               il diritto di modificare i termini e le condizioni in
               qualsiasi momento. Le modifiche saranno comunicate agli
