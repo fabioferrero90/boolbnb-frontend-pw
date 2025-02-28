@@ -14,7 +14,7 @@ const Reviews = () => {
     <div>
       {reviews.map((review) => (
         <div
-          key={review.house_id}
+          key={review.id}
           className="flex flex-col p-5 border border-gray-200 rounded-lg my-5"
         >
           <h1 className="text-2xl font-bold">{review.name}</h1>

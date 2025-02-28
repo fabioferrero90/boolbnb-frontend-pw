@@ -8,6 +8,7 @@ import { MdMeetingRoom, MdWc, MdAlternateEmail } from "react-icons/md";
 import { PiResizeLight } from "react-icons/pi";
 import { GiPositionMarker } from "react-icons/gi";
 import Reviews from "../Components/Reviews";
+import Gallery from "../Components/Gallery";
 
 const HouseDetails = () => {
   const { fetchHouse, house } = useGlobalContext();
@@ -51,7 +52,6 @@ const HouseDetails = () => {
     bathrooms,
     size,
     address,
-    cover_image,
     type,
     price_pernight,
     likes,
@@ -59,11 +59,12 @@ const HouseDetails = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl p-8 flex flex-col lg:flex-row items-center">
-        <div className="w-full max-w-2xl p-5">
-          <img src={cover_image} alt={name} className="rounded w-full" />
+      <div className="mx-auto max-w-screen-xl p-8 items-center">
+        <div className="w-full max-w-2xl mb-5">
+          {/* <img src={cover_image} alt={name} className="rounded w-full" /> */}
+          <Gallery />
         </div>
-        <div className="w-[100%] max-w-2xl lg:ml-8 mt-8 lg:mt-0 p-5 bg-white border border-gray-200 rounded-lg shadow-sm">
+        <div className="w-full max-w-2xl mt-8 lg:mt-0 p-5 bg-white border border-gray-200 rounded-lg shadow-sm">
           <h1 className="text-2xl font-bold">{name}</h1>
           <h3 className="text-lg text-gray-700">{host_name}</h3>
           <p className="mt-4">{abstract}</p>
