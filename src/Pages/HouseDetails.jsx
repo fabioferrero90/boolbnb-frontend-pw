@@ -59,52 +59,67 @@ const HouseDetails = () => {
 
   return (
     <>
-      <div className="mx-auto max-w-screen-xl p-8 flex flex-col lg:flex-row items-center">
+      <div className="mx-auto max-w-screen-xl p-8 flex justify-between">
+        <h1 className=" font-bold pr-2">{name}</h1>
+        <div className="pr-2 text-gray-700">
+          {type} di {host_name}
+        </div>
+      </div>
+      <div className="mx-auto max-w-screen-xl px-8 flex flex-col lg:flex-row items-center mb-5">
         <div className="w-full lg:w-1/2 mb-5 lg:mb-0">
           <Gallery />
         </div>
-        <div className="w-full lg:w-1/2 mt-8 lg:mt-0 p-5 bg-white border border-gray-200 rounded-lg shadow-sm">
-          <h1 className="text-2xl font-bold">{name}</h1>
-          <h3 className="text-lg text-gray-700">{host_name}</h3>
-          <p className="mt-4">{abstract}</p>
+        <div className="w-full lg:w-1/2 mt-8 lg:mt-0 p-5 bg-white ">
+          <div className="flex items-center mt-2">
+            <GiPositionMarker />{" "}
+            <span className="pl-2">
+              Indirizzo: {address.city} {address.number}, {address.region},{" "}
+              {address.address}, {address.country}, {address.province},{" "}
+              {address["postal-code"]}
+            </span>
+          </div>
+
           <div className="mt-4">
             <div className="flex items-center">
-              <PiResizeLight /> <span className="text-xs pl-2">{size} Mq</span>
+              <PiResizeLight /> <span className=" pl-2">{size} Mq</span>
             </div>
             <div className="flex items-center mt-2">
-              <MdMeetingRoom />{" "}
-              <span className="text-xs pl-2">{rooms} stanze</span>
+              <MdMeetingRoom /> <span className=" pl-2">{rooms} stanze</span>
             </div>
             <div className="flex items-center mt-2">
-              <MdWc /> <span className="text-xs pl-2">{bathrooms} bagni</span>
+              <MdWc /> <span className=" pl-2">{bathrooms} bagni</span>
             </div>
             <div className="flex items-center mt-2">
-              <FaBed /> <span className="text-xs pl-2">{beds} letti</span>
+              <FaBed /> <span className=" pl-2">{beds} letti</span>
             </div>
             <div className="flex items-center mt-2">
-              <MdAlternateEmail /> <span className="text-xs pl-2">{email}</span>
+              <MdAlternateEmail /> <span className=" pl-2">{email}</span>
             </div>
             <div className="flex items-center mt-2">
-              <FaPhone /> <span className="text-xs pl-2">{phone_number}</span>
-            </div>
-            <div className="flex items-center mt-2">
-              <GiPositionMarker />{" "}
-              <span className="text-xs pl-2">
-                Indirizzo: {address.city} {address.number}, {address.region},{" "}
-                {address.address}, {address.country}, {address.province},{" "}
-                {address["postal-code"]}
-              </span>
+              <FaPhone /> <span className=" pl-2">{phone_number}</span>
             </div>
           </div>
-          <div className="mt-2">Tipo: {type}</div>
-          <div className="mt-2">Prezzo per notte: {price_pernight}</div>
           <div className="flex items-center mt-2">
-            <FaHeart /> <span className="text-xs pl-2">{likes}</span>
+            <FaHeart /> <span className=" pl-2">{likes}</span>
           </div>
         </div>
       </div>
       <div className="mx-auto max-w-screen-xl px-8">
-        <Reviews />
+        <div className="flex w-full justify-between flex-col lg:flex-row items-center">
+          <p className="w-[80%]">
+            <p>
+              <strong>Descrizione: </strong>
+            </p>
+            {abstract}
+          </p>
+          <div className="w-[20%] text-center">
+            Prezzo per notte: <strong>{price_pernight}€</strong>
+          </div>
+        </div>
+        <div>
+          <h1 className="mt-5 font-bold">RECENSIONI:</h1>
+          <Reviews />
+        </div>
       </div>
     </>
   );
