@@ -10,6 +10,7 @@ const GlobalProvider = ({ children }) => {
   const [orderedBy, setOrderedBy] = useState("most-liked");
   const [house, setHouse] = useState({});
   const [reviews, setReviews] = useState([]);
+  const [ratingNames, setRatingNames] = useState([]);
   const [gallery, setGallery] = useState([]);
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
@@ -55,12 +56,12 @@ const GlobalProvider = ({ children }) => {
       });
   };
 
-  const [ratingNames, setRatingNames] = useState([]);
   const fetchRatings = () => {
     axios
       .get(`${APIendpoint}/reviews/ratings`)
       .then((res) => {
         setRatingNames(res.data);
+        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -99,7 +100,6 @@ const GlobalProvider = ({ children }) => {
       .get(`${APIendpoint}/houses/gallery/${id}`)
       .then((res) => {
         setGallery(res.data);
-        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
