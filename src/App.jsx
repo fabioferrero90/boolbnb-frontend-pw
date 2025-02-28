@@ -4,6 +4,7 @@ import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
 import Results from "./Pages/Results";
 import HouseDetails from "./Pages/HouseDetails";
+import InsertHouse from "./Pages/InsertHouse";
 import Reviews from "./Components/Reviews";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
           <Route Component={DefaultLayout}>
             <Route path="/" Component={Home} />
             <Route path="/results/:query" Component={Results} />
+            <Route path="/inserthouse" Component={InsertHouse} />
             <Route path="/houses/:id" Component={HouseDetails} />
             <Route path="/reviews/:id" Component={Reviews} />
           </Route>
