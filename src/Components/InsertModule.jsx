@@ -24,46 +24,56 @@ const InsertModule = () => {
     }
   };
 
-  const validateSection = () => {
+  const validateSection = async () => {
     const currentSection = sections.find(
       (section) => section.id === activeSection
     );
     const newErrors = {};
+    const promises = [];
+
     currentSection.fields.forEach((field) => {
       if (field.type === "addressAPI") {
         const addressValue = fieldRefs.current["address"]?.value;
         if (!addressValue) {
           newErrors["address"] = "Questo campo è obbligatorio";
         } else {
-          const geo = getGeocode({ address: addressValue }).then((results) => {
-            const addressComponents = results[0].address_components;
-            const address = {
-              Stato: getAddressComponent(addressComponents, "country"),
-              Regione: getAddressComponent(addressComponents, "administrative_area_level_1"),
-              Provincia: getAddressComponent(addressComponents, "administrative_area_level_2", "short_name"),
-              Città: getAddressComponent(addressComponents, "locality"),
-              CAP: getAddressComponent(addressComponents, "postal_code"),
-              Via: getAddressComponent(addressComponents, "route"),
-              Civico: getAddressComponent(addressComponents, "street_number"),
-            };
+          const promise = getGeocode({ address: addressValue })
+            .then((results) => {
+              const addressComponents = results[0].address_components;
+              const address = {
+                Stato: getAddressComponent(addressComponents, "country"),
+                Regione: getAddressComponent(addressComponents, "administrative_area_level_1"),
+                Provincia: getAddressComponent(addressComponents, "administrative_area_level_2", "short_name"),
+                Città: getAddressComponent(addressComponents, "locality"),
+                CAP: getAddressComponent(addressComponents, "postal_code"),
+                Via: getAddressComponent(addressComponents, "route"),
+                Civico: getAddressComponent(addressComponents, "street_number"),
+              };
 
-            if (!address.Civico) {
-              newErrors["address"] = "Indirizzo incompleto: Il Numero Civico è obbligatorio";
-            } else if (!address.Via) {
-              newErrors["address"] = "Indirizzo incompleto: La Via è obbligatoria";
-            } else if (!address.CAP) {
-              newErrors["address"] = "Indirizzo incompleto: Il CAP è obbligatorio";
-            } else if (!address.Città) {
-              newErrors["address"] = "Indirizzo incompleto: La Città è obbligatoria";
-            } else if (!address.Provincia) {
-              newErrors["address"] = "Indirizzo incompleto: La Provincia è obbligatoria";
-            } else if (!address.Regione) {
-              newErrors["address"] = "Indirizzo incompleto: La Regione è obbligatoria";
-            } else if (!address.Stato) {
-              newErrors["address"] = "Indirizzo incompleto: Lo Stato è obbligatorio";
-            }
-            console.log(geo)
-          });
+              if (!address.Civico) {
+                newErrors["address"] = "Indirizzo incompleto: Il Numero Civico è obbligatorio";
+              } else if (!address.Via) {
+                newErrors["address"] = "Indirizzo incompleto: La Via è obbligatoria";
+              } else if (!address.CAP) {
+                newErrors["address"] = "Indirizzo incompleto: Il CAP è obbligatorio";
+              } else if (!address.Città) {
+                newErrors["address"] = "Indirizzo incompleto: La Città è obbligatoria";
+              } else if (!address.Provincia) {
+                newErrors["address"] = "Indirizzo incompleto: La Provincia è obbligatoria";
+              } else if (!address.Regione) {
+                newErrors["address"] = "Indirizzo incompleto: La Regione è obbligatoria";
+              } else if (!address.Stato) {
+                newErrors["address"] = "Indirizzo incompleto: Lo Stato è obbligatorio";
+              }
+            })
+            .catch((error) => {
+              if (error.message === "ZERO_RESULTS") {
+                newErrors["address"] = "Indirizzo non trovato. Si prega di inserire un indirizzo valido.";
+              } else {
+                newErrors["address"] = "Errore nella geocodifica dell'indirizzo.";
+              }
+            });
+          promises.push(promise);
         }
       } else {
         const fieldValue = fieldRefs.current[field.id]?.value;
@@ -72,12 +82,15 @@ const InsertModule = () => {
         }
       }
     });
+
+    await Promise.all(promises);
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleNextButtonClick = () => {
-    if (validateSection()) {
+  const handleNextButtonClick = async () => {
+    const isValid = await validateSection();
+    if (isValid) {
       const currentIndex = sections.findIndex(
         (section) => section.id === activeSection
       );
@@ -172,7 +185,7 @@ const InsertModule = () => {
 
   const getAddressComponent = (components, type) => {
     const component = components.find((c) => c.types.includes(type));
-    if (type == "administrative_area_level_2") {
+    if (type === "administrative_area_level_2") {
       return component ? component.short_name : "";
     }
     return component ? component.long_name : "";
