@@ -3,7 +3,6 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import sections from "../assets/data/InsertSections";
-import AddressInput from "./partials/AddressInput";
 import "../styles/animations.css";
 
 const InsertModule = () => {
