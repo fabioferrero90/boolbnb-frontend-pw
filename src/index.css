@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.home{
+.home {
   min-height: 500px;
   background: linear-gradient(270deg, rgba(41, 26, 139, 0.712) 0%, rgba(41, 8, 85, 0.594) 68%), url(/sfondo/crociera-caraibi.webp);
   background-size: cover;
@@ -11,56 +11,90 @@
 }
 
 
-.custom-bg-color-primary{
-  background: rgb(42,26,139);
-  background: linear-gradient(270deg, rgba(42,26,139,1) 0%, rgba(41,8,85,1) 68%, rgba(41,8,85,1) 93%, rgba(41,8,85,1) 100%);
+.custom-bg-color-primary {
+  background: rgb(42, 26, 139);
+  background: linear-gradient(270deg, rgba(42, 26, 139, 1) 0%, rgba(41, 8, 85, 1) 68%, rgba(41, 8, 85, 1) 93%, rgba(41, 8, 85, 1) 100%);
 }
 
-.modal-custom-bg{
-  background: rgb(42,26,139);
-  background: linear-gradient(270deg, rgba(41, 26, 139, 0.4) 0%, rgba(41,8,85,0.4) 68%, rgba(41,8,85,0.2) 93%, rgba(41,8,85,0.2) 100%);
+.modal-custom-bg {
+  background: rgb(42, 26, 139);
+  background: linear-gradient(270deg, rgba(41, 26, 139, 0.4) 0%, rgba(41, 8, 85, 0.4) 68%, rgba(41, 8, 85, 0.2) 93%, rgba(41, 8, 85, 0.2) 100%);
 }
 
-.custom-teal-bg{
-  background-color:#1afa72
+.custom-teal-bg {
+  background-color: #1afa72
 }
 
-.custom-teal-color{
-  color:#1afa72
+.custom-teal-color {
+  color: #1afa72
 }
 
-.no-select{
-  -webkit-user-select: none; /* Safari */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* Internet Explorer/Edge */
-  user-select: none;         /* Standard */
+.no-select {
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Standard */
 }
 
-.headbg{
+.headbg {
   background: linear-gradient(270deg, rgba(41, 26, 139, 0.712) 0%, rgba(41, 8, 85, 0.594) 68%), url(/sfondo/crociera-caraibi.webp);
   background-size: cover;
   background-position: center;
 }
 
-.anchor-target{
+.anchor-target {
   scroll-margin-top: 10vh;
 }
 
-.mySwiper{
-  max-height: 95px;
-}
 
 .img-gallery {
   margin: 0 auto;
-  background-color: lightgray;
-  height: 400px;
+  height: 500px;
   object-fit: contain;
 }
 
 .img-scroller {
-  max-height: 95px;
-
   img {
+    max-height: 180px;
     object-fit: contain;
   }
+}
+
+.img-box {
+  max-height: 95px;
+  object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+  .img-gallery {
+    height: 300px;
+  }
+
+  .img-scroller {
+    img {
+      max-height: 100px;
+    }
+  }
+
+  .img-box {
+    max-height: 50px;
+  }
+
+}
+
+@media screen and (max-width: 410px) {
+  .img-scroller {
+    img {
+      max-height: 80px;
+    }
+  }
+
+  .img-box {
+    max-height: 45px;
+  }
+
 }

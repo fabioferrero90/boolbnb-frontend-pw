@@ -24,7 +24,7 @@ const Gallery = () => {
         navigation={true}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2"
+        className="mySwiper2 mb-6"
       >
         <SwiperSlide key={`house-slide-${house.id}`}>
           <img
@@ -51,7 +51,7 @@ const Gallery = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper mt-3 img-scroller rounded"
+        className="mySwiper mb-10 img-scroller rounded"
       >
         <SwiperSlide key={`thumb-house-${house.id}`}>
           <img src={house.cover_image} alt={house.name} className="contain" />
