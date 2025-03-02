@@ -30,15 +30,24 @@ const InsertHouse = () => {
           </section>
         </div>
       </div>
-      <div className="max-w-screen-xl flex flex-col justify-center items-center mx-auto py-9 md:p-8">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga et consectetur cum doloribus similique possimus sequi necessitatibus! Doloribus repellat minus, in totam quaerat, ut odio, cumque a iure odit aut.
+      <div className="max-w-screen-xl flex flex-col justify-center items-center mx-auto py-9 md:p-8 px-2">
+        <h2 className="text-center font-bold pt-2 text-2xl">Come procedere all'inserimento della tua struttura?</h2>
+        <p className="text-center py-2">
+          Inserire la tua casa, B&B o struttura alberghiera su BoolB&B è semplice e guidato. Ti verranno richiesti i dati generici della struttura e i dati di contatto per fare in modo che gli utenti della piattaforma possano contattarti facilmente. Dopo aver completato la procedura, potrai subito iniziare a guadagnare con BoolB&B.
+        </p>
+        <p className="text-center py-2">
+          La procedura di inserimento è stata progettata per essere intuitiva e veloce. Durante il processo, ti guideremo passo dopo passo, assicurandoci che tu fornisca tutte le informazioni necessarie per rendere la tua struttura attraente per i potenziali ospiti. Non preoccuparti se non hai mai fatto qualcosa di simile prima, siamo qui per aiutarti in ogni fase.
+        </p>
+        <p className="text-center py-2">
+          Una volta completato l'inserimento, la tua struttura sarà visibile sulla nostra piattaforma e potrai iniziare a ricevere prenotazioni immediatamente. Non perdere l'opportunità di guadagnare condividendo la tua casa con viaggiatori da tutto il mondo.
         </p>
 
-        <h2 className="text-center font-bold pt-5">Compila il modulo ora</h2>
-        <button className="custom-bg-color-primary text-white font-bold py-2 px-4 rounded-full mt">
+        <h2 className="text-center font-bold text-xl py-2">Compila il modulo ora:</h2>
+        <button className="custom-bg-color-primary text-white font-bold py-2 px-4 rounded-full mt text-xl">
           <a href="/insertnew">Inserisci la tua struttura</a>
         </button>
       </div>
+      
     </div>
   );
 };

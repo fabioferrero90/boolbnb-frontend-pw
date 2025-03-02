@@ -2,8 +2,7 @@ import { useState } from "react";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-const AddressInput = () => {
-  const [error, setError] = useState("");
+const AddressInput = ({fieldRefs, newErrors}) => {
   const {
     ready,
     value,
@@ -49,7 +48,7 @@ const AddressInput = () => {
         };
 
         if (!address.Civico) {
-          setError("Il Numero Civico è obbligatorio.");
+          setErrors("Indirizzo incompleto (Il Numero Civico è obbligatorio)");
         } else {
           setError("");
           console.log("📍 Address: ", address);
@@ -79,11 +78,12 @@ const AddressInput = () => {
   return (
     <div ref={ref}>
       <input
-        className="form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
+        className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
         value={value}
         onChange={handleInput}
         disabled={!ready}
         placeholder=""
+        ref={(el) => (fieldRefs.current["address"] = el)}
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}

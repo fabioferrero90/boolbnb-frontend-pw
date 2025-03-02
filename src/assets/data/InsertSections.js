@@ -7,24 +7,27 @@ const sections = [
       {
         label: "Nome della struttura",
         type: "text",
-        id: "structure-name",
+        id: "house_name",
+        required: true,
         description:
           "Questo sarà il nome visualizzato dagli utenti per identificare la tua struttura",
       },
       {
         label: "Indirizzo della struttura",
         type: "addressAPI",
-        id: "structure-address",
+        id: "address",
+        required: true,
         description:
           "Inizia a scrivere l'indirizzo completo di numero civico e selezionane uno tra quelli proposti",
       },
       {
         label: "Descrizione della struttura",
         type: "textarea",
-        id: "structure-description",
+        id: "abstract",
+        required: true,
         description:
           "Scrivi una breve descrizione che possa incuriosire gli utenti, la creatività verrà premiata 😉",
-      },
+      }
     ],
   },
   {
@@ -36,30 +39,35 @@ const sections = [
         label: "Dimensione (Metri Quadri)",
         type: "number",
         id: "size",
+        required: true,
         description: "Indica la dimensione della struttura",
       },
       {
         label: "Numero di Bagni",
         type: "number",
         id: "bathrooms",
+        required: true,
         description: "Quanti bagni sono presenti nella struttura?",
       },
       {
         label: "Numero di Stanze",
         type: "number",
         id: "rooms",
+        required: true,
         description: "Quante stanze sono presenti nella struttura?",
       },
       {
         label: "Numero di Letti",
         type: "number",
         id: "beds",
+        required: true,
         description: "Quanti letti sono presenti nella struttura?",
       },
       {
         label: "Servizi offerti",
         type: "text",
         id: "services",
+        required: true,
         description: "Quali servizi offri nella struttura?",
       },
     ],
@@ -73,6 +81,7 @@ const sections = [
         label: "Nome dell'Host",
         type: "text",
         id: "host-name",
+        required: true,
         description:
           "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
       },
@@ -80,6 +89,7 @@ const sections = [
         label: "Numero di Telefono",
         type: "text",
         id: "host-phone",
+        required: true,
         description:
           "Questo sarà il numero di telefono a cui gli utenti potranno contattarti",
       },
@@ -87,6 +97,7 @@ const sections = [
         label: "Indirizzo Mail",
         type: "text",
         id: "host-mail",
+        required: true,
         description:
           "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
       },

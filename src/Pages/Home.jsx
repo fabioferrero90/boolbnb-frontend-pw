@@ -11,7 +11,7 @@ const Home = () => {
     fetchRatings();
   }, []);
   return (
-    <div className="home flex flex-col items-center justify-center custom-bg-dark py-30">
+    <div className="home flex flex-col items-center justify-center custom-bg-dark py-30 px-2">
       <SearchBar />
       <Statistics />
       <HouseGrid />
