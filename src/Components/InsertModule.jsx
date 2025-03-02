@@ -1,9 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import sections from "../assets/data/InsertSections";
 import "../styles/animations.css";
+import "@yaireo/tagify/dist/tagify.css";
+import "../styles/custom-tagify.css";
+import Tagify from "@yaireo/tagify";
+import axios from "axios";
 
 const InsertModule = () => {
   const [activeSection, setActiveSection] = useState(sections[0].id);
@@ -11,6 +15,44 @@ const InsertModule = () => {
   const [errors, setErrors] = useState({});
   const containerRef = useRef(null);
   const fieldRefs = useRef({});
+  const [services, setServices] = useState([]);
+  const [formData, setFormData] = useState({});
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
+  useEffect(() => {
+    axios.get(`${APIendpoint}/houses/services`)
+      .then((res) => {
+        const newServices = res.data.map(service => service.name);
+        setServices(newServices);
+      })
+      .catch((error) => {
+        console.error("Error fetching services:", error);
+      });
+  }, [APIendpoint]);
+
+  useEffect(() => {
+    const input = document.querySelector("input[name=services]");
+    if (input && services.length > 0) {
+      const tagify = new Tagify(input, {
+        whitelist: services,
+        focusable: false,
+        dropdown: {
+          position: 'input',
+          enabled: 1 // always opens dropdown when input gets focus
+        }
+      });
+
+      tagify.on('change', (e) => {
+        const servicesArray = JSON.parse(e.detail.value).map(service => service.value);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          services: servicesArray,
+        }));
+      });
+
+      fieldRefs.current["services"] = tagify;
+    }
+  }, [services]);
 
   const handleBackButtonClick = () => {
     const currentIndex = sections.findIndex(
@@ -41,8 +83,15 @@ const InsertModule = () => {
               const addressComponents = results[0].address_components;
               const address = {
                 Stato: getAddressComponent(addressComponents, "country"),
-                Regione: getAddressComponent(addressComponents, "administrative_area_level_1"),
-                Provincia: getAddressComponent(addressComponents, "administrative_area_level_2", "short_name"),
+                Regione: getAddressComponent(
+                  addressComponents,
+                  "administrative_area_level_1"
+                ),
+                Provincia: getAddressComponent(
+                  addressComponents,
+                  "administrative_area_level_2",
+                  "short_name"
+                ),
                 Città: getAddressComponent(addressComponents, "locality"),
                 CAP: getAddressComponent(addressComponents, "postal_code"),
                 Via: getAddressComponent(addressComponents, "route"),
@@ -50,29 +99,43 @@ const InsertModule = () => {
               };
 
               if (!address.Civico) {
-                newErrors["address"] = "Indirizzo incompleto: Il Numero Civico è obbligatorio";
+                newErrors["address"] =
+                  "Indirizzo incompleto: Il Numero Civico è obbligatorio";
               } else if (!address.Via) {
-                newErrors["address"] = "Indirizzo incompleto: La Via è obbligatoria";
+                newErrors["address"] =
+                  "Indirizzo incompleto: La Via è obbligatoria";
               } else if (!address.CAP) {
-                newErrors["address"] = "Indirizzo incompleto: Il CAP è obbligatorio";
+                newErrors["address"] =
+                  "Indirizzo incompleto: Il CAP è obbligatorio";
               } else if (!address.Città) {
-                newErrors["address"] = "Indirizzo incompleto: La Città è obbligatoria";
+                newErrors["address"] =
+                  "Indirizzo incompleto: La Città è obbligatoria";
               } else if (!address.Provincia) {
-                newErrors["address"] = "Indirizzo incompleto: La Provincia è obbligatoria";
+                newErrors["address"] =
+                  "Indirizzo incompleto: La Provincia è obbligatoria";
               } else if (!address.Regione) {
-                newErrors["address"] = "Indirizzo incompleto: La Regione è obbligatoria";
+                newErrors["address"] =
+                  "Indirizzo incompleto: La Regione è obbligatoria";
               } else if (!address.Stato) {
-                newErrors["address"] = "Indirizzo incompleto: Lo Stato è obbligatorio";
+                newErrors["address"] =
+                  "Indirizzo incompleto: Lo Stato è obbligatorio";
               }
             })
             .catch((error) => {
               if (error.message === "ZERO_RESULTS") {
-                newErrors["address"] = "Indirizzo non trovato. Si prega di inserire un indirizzo valido.";
+                newErrors["address"] =
+                  "Indirizzo non trovato. Si prega di inserire un indirizzo valido.";
               } else {
-                newErrors["address"] = "Errore nella geocodifica dell'indirizzo.";
+                newErrors["address"] =
+                  "Errore nella geocodifica dell'indirizzo.";
               }
             });
           promises.push(promise);
+        }
+      } else if (field.type === "services") {
+        const servicesValue = formData["services"];
+        if (field.required && (!servicesValue || servicesValue.length === 0)) {
+          newErrors["services"] = "Devi aggiungere almeno un servizio";
         }
       } else {
         const fieldValue = fieldRefs.current[field.id]?.value;
@@ -153,8 +216,15 @@ const InsertModule = () => {
         const addressComponents = results[0].address_components;
         const address = {
           Stato: getAddressComponent(addressComponents, "country"),
-          Regione: getAddressComponent(addressComponents, "administrative_area_level_1"),
-          Provincia: getAddressComponent(addressComponents, "administrative_area_level_2", "short_name"),
+          Regione: getAddressComponent(
+            addressComponents,
+            "administrative_area_level_1"
+          ),
+          Provincia: getAddressComponent(
+            addressComponents,
+            "administrative_area_level_2",
+            "short_name"
+          ),
           Città: getAddressComponent(addressComponents, "locality"),
           CAP: getAddressComponent(addressComponents, "postal_code"),
           Via: getAddressComponent(addressComponents, "route"),
@@ -162,19 +232,24 @@ const InsertModule = () => {
         };
 
         if (!address.Civico) {
-          newErrors["address"] = "Indirizzo incompleto: Il Numero Civico è obbligatorio";
+          newErrors["address"] =
+            "Indirizzo incompleto: Il Numero Civico è obbligatorio";
         } else if (!address.Via) {
           newErrors["address"] = "Indirizzo incompleto: La Via è obbligatoria";
         } else if (!address.CAP) {
           newErrors["address"] = "Indirizzo incompleto: Il CAP è obbligatorio";
         } else if (!address.Città) {
-          newErrors["address"] = "Indirizzo incompleto: La Città è obbligatoria";
+          newErrors["address"] =
+            "Indirizzo incompleto: La Città è obbligatoria";
         } else if (!address.Provincia) {
-          newErrors["address"] = "Indirizzo incompleto: La Provincia è obbligatoria";
+          newErrors["address"] =
+            "Indirizzo incompleto: La Provincia è obbligatoria";
         } else if (!address.Regione) {
-          newErrors["address"] = "Indirizzo incompleto: La Regione è obbligatoria";
+          newErrors["address"] =
+            "Indirizzo incompleto: La Regione è obbligatoria";
         } else if (!address.Stato) {
-          newErrors["address"] = "Indirizzo incompleto: Lo Stato è obbligatorio";
+          newErrors["address"] =
+            "Indirizzo incompleto: Lo Stato è obbligatorio";
         } else {
           setErrors({});
           console.log("📍 Address: ", address);
@@ -188,6 +263,14 @@ const InsertModule = () => {
       return component ? component.short_name : "";
     }
     return component ? component.long_name : "";
+  };
+
+  const handleFieldChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
 
   const renderSuggestions = () =>
@@ -218,7 +301,8 @@ const InsertModule = () => {
                 )}
                 <li
                   className={`flex justify-center items-center w-full ${
-                    activeSection === section.id && "custom-teal-color font-bold"
+                    activeSection === section.id &&
+                    "custom-teal-color font-bold"
                   }`}
                 >
                   <span className="flex items-center">
@@ -266,7 +350,10 @@ const InsertModule = () => {
                             <input
                               className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
                               id={field.id}
+                              name={field.id}
                               type="text"
+                              value={formData[field.id] || ""}
+                              onChange={handleFieldChange}
                               ref={(el) => (fieldRefs.current[field.id] = el)}
                             />
                           )}
@@ -274,7 +361,10 @@ const InsertModule = () => {
                             <input
                               className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
                               id={field.id}
+                              name={field.id}
                               type="number"
+                              value={formData[field.id] || ""}
+                              onChange={handleFieldChange}
                               ref={(el) => (fieldRefs.current[field.id] = el)}
                             />
                           )}
@@ -282,71 +372,36 @@ const InsertModule = () => {
                             <textarea
                               className="px-3 py-1 form-textarea block w-full rounded-xl border border-gray-300 focus:bg-white"
                               id={field.id}
+                              name={field.id}
                               rows="8"
+                              value={formData[field.id] || ""}
+                              onChange={handleFieldChange}
                               ref={(el) => (fieldRefs.current[field.id] = el)}
                             ></textarea>
                           )}
-                          {field.type === "select" && (
-                            <select
-                              className="px-3 py-1 form-multiselect block w-full"
-                              multiple
-                              id={field.id}
-                              ref={(el) => (fieldRefs.current[field.id] = el)}
-                            >
-                              {field.options.map((option, optIdx) => (
-                                <option key={optIdx}>{option}</option>
-                              ))}
-                            </select>
-                          )}
-                          {field.type === "radio" && (
-                            <div className="mt-2">
-                              {field.options.map((option, optIdx) => (
-                                <label
-                                  key={optIdx}
-                                  className="inline-flex items-center ml-6"
-                                >
-                                  <input
-                                    type="radio"
-                                    className="form-radio"
-                                    name={field.id}
-                                    value={option}
-                                    ref={(el) => (fieldRefs.current[field.id] = el)}
-                                  />
-                                  <span className="ml-2">{option}</span>
-                                </label>
-                              ))}
+                          {field.type === "addressAPI" && (
+                            <div ref={ref}>
+                              <input
+                                className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
+                                value={value}
+                                onChange={handleInput}
+                                disabled={!ready}
+                                placeholder=""
+                                ref={(el) =>
+                                  (fieldRefs.current["address"] = el)
+                                }
+                              />
+                              {status === "OK" && (
+                                <ul>{renderSuggestions()}</ul>
+                              )}
                             </div>
                           )}
-                          {field.type === "addressAPI" && (
-                           <div ref={ref}>
-                            <input
-                              className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
-                              value={value}
-                              onChange={handleInput}
-                              disabled={!ready}
-                              placeholder=""
-                              ref={(el) => (fieldRefs.current["address"] = el)}
-                            />
-                            {/* We can use the "status" to decide whether we should display the dropdown or not */}
-                            {status === "OK" && <ul>{renderSuggestions()}</ul>}
-                         </div>
-                          )}
-                          {field.type === "checkbox" && (
+                          {field.type === "services" && (
                             <div>
-                              {field.options.map((option, optIdx) => (
-                                <label
-                                  key={optIdx}
-                                  className="inline-flex items-center"
-                                >
-                                  <input
-                                    type="checkbox"
-                                    className="form-checkbox"
-                                    defaultChecked
-                                    ref={(el) => (fieldRefs.current[field.id] = el)}
-                                  />
-                                  <span className="ml-2">{option}</span>
-                                </label>
-                              ))}
+                              <input
+                                className="customLook px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white custom-tagify-services"
+                                name="services"
+                              />
                             </div>
                           )}
                           <p className="py-2 text-sm text-gray-800">
@@ -365,11 +420,15 @@ const InsertModule = () => {
               ))}
             </div>
           </section>
-          <div className=' flex justify-center items-center bottom-5 gap-5 sticky'>
+          <div className=" flex justify-center items-center bottom-5 gap-5 sticky">
             <button
               id="actionButton"
               onClick={handleBackButtonClick}
-              className={`cursor-pointer shadow-4xl bg-gray-300 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded-2xl text-xl ${sections.findIndex((section) => section.id === activeSection) === 0 && "hidden"}`}
+              className={`cursor-pointer shadow-4xl bg-gray-300 focus:shadow-outline focus:outline-none text-gray-800 font-bold py-2 px-4 rounded-2xl text-xl ${
+                sections.findIndex(
+                  (section) => section.id === activeSection
+                ) === 0 && "hidden"
+              }`}
               type="button"
             >
               Indietro
@@ -380,7 +439,9 @@ const InsertModule = () => {
               className={`cursor-pointer shadow-4xl custom-bg-color-primary focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-2xl text-xl`}
               type="button"
             >
-              {sections.findIndex((section) => section.id === activeSection) + 1 < sections.length
+              {sections.findIndex((section) => section.id === activeSection) +
+                1 <
+              sections.length
                 ? "Avanti"
                 : "Conferma Inserimento"}
             </button>
