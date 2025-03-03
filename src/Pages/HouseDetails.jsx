@@ -102,12 +102,6 @@ const HouseDetails = () => {
             <Gallery />
           </div>
         </div>
-
-        <div className="mx-auto max-w-screen-xl px-8">
-          <div className="w-full mb-5 lg:mb-0">
-            <Gallery />
-          </div>
-        </div>
       </div>
 
       <div className="py-8 custom-bg-color-primary">
