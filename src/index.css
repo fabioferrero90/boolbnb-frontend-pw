@@ -86,6 +86,11 @@
 
 }
 
+.reviews-box {
+  max-height: 135px;
+  overflow-y: hidden;
+}
+
 @media screen and (max-width: 410px) {
   .like {
     flex-direction: column;

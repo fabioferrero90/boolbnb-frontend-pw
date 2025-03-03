@@ -22,29 +22,20 @@ const HouseDetails = () => {
     fetchHouse(id);
   }, [id]);
 
-  useEffect(() => {
-    if (house) {
-      setLiked(house.liked);
-    }
-  }, [house]);
-
-  const manageLike = (id) => {
-    setLiked(!liked);
-    if (!liked) {
-      axios.put(`${APIendpoint}/houses/like/${id}`).then((response) => {
-        fetchHouse(id);
-      });
-    } else {
-      axios.put(`${APIendpoint}/houses/dislike/${id}`).then((response) => {
-        fetchHouse(id);
-      });
+  const manageLike = async (id) => {
+    try {
+      if (!liked) {
+        await axios.put(`${APIendpoint}/houses/like/${id}`);
+      } else {
+        await axios.put(`${APIendpoint}/houses/dislike/${id}`);
+      }
+      setLiked(!liked);
+      fetchHouse(id);
+    } catch (error) {
+      console.error("Errore durante l'aggiornamento del like:", error);
+      setLiked(liked);
     }
   };
-
-  useEffect(() => {
-    fetchHouse(id);
-    setLiked(new Array(house.length).fill(false));
-  }, [id]);
 
   if (!house || !house.address) {
     return (
@@ -88,23 +79,29 @@ const HouseDetails = () => {
   return (
     <>
       <div className="py-8">
-        <div className=" mx-auto flex-col sm:flex-row">
-          <div className="mx-auto max-w-screen-xl p-8">
+        <div className="mx-auto flex justify-between max-w-screen-xl p-8">
+          <div>
             <h1 className="font-bold pr-2 text-4xl sm:text-5xl">{name}</h1>
             <div className="pr-2 text-green-400 text-lg sm:text-xl">
               {type} di {host_name}
             </div>
           </div>
-          <div className="flex mx-auto py-10 items-center">
+          <div className="flex items-center">
             <FaHeart
-              className={`text - 2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
-                }`}
+              className={`text-2xl cursor-pointer ${
+                liked ? "text-red-500" : "text-green-400"
+              }`}
               onClick={() => manageLike(id)}
             />
             <p className="pl-2">{likes} like</p>
           </div>
         </div>
 
+        <div className="mx-auto max-w-screen-xl px-8">
+          <div className="w-full mb-5 lg:mb-0">
+            <Gallery />
+          </div>
+        </div>
 
         <div className="mx-auto max-w-screen-xl px-8">
           <div className="w-full mb-5 lg:mb-0">
@@ -198,7 +195,6 @@ const HouseDetails = () => {
           </div>
         </div>
       </div>
-
     </>
   );
 };

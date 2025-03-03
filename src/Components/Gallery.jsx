@@ -17,8 +17,8 @@ const Gallery = () => {
     <div>
       <Swiper
         style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
+          "--swiper-navigation-color": "#2A1A89",
+          "--swiper-pagination-color": "#2A1A89",
         }}
         spaceBetween={10}
         navigation={true}
