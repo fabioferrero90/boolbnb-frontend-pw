@@ -4,6 +4,7 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import sections from "../assets/data/InsertSections";
+import ConfirmForm from "./partials/ConfirmForm";
 import "../styles/animations.css";
 import "@yaireo/tagify/dist/tagify.css";
 import "../styles/custom-tagify.css";
@@ -18,7 +19,7 @@ const InsertModule = () => {
   const fieldRefs = useRef({});
   const [services, setServices] = useState([]);
   const [formData, setFormData] = useState({});
-  const { houseTypes, fetchHouseTypes } = useGlobalContext();
+  const { houseTypes, fetchHouseTypes, setPreviewData } = useGlobalContext();
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -93,12 +94,44 @@ const InsertModule = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const handleFormSubmit = async () => {
+    console.log(formData)
+    const houseData = {
+      host_name: formData.host_name,
+      name: formData.house_name,
+      email: formData.host_mail,
+      phone_number: formData.host_phone,
+      rooms: formData.rooms,
+      beds: formData.beds,
+      bathrooms: formData.bathrooms,
+      size: formData.size,
+      address: formData.address,
+      cover_image: formData.cover_photo,
+      type: formData.house_type,
+      abstract: formData.abstract,
+      price_pernight: formData.price_pernight,
+      services: [],
+      likes: 0,
+    }
+    for (let i = 0; i < formData.services.length; i++) {
+      houseData.services.push({ name: formData.services[i] });
+    }
+
+    axios.post(`${APIendpoint}/houses`, houseData)
+      .then((res) => {
+        console.log("Success:", res.data);
+        window.location.href = `/houses/${res.data.id}`;
+      })
+      .catch((error) => console.error("Errore nell'inserimento della casa:", error));
+  };
+
   const handleNextButtonClick = async () => {
     const isValid = await validateSection();
     if (isValid) {
+      setPreviewData(formData);
       const currentIndex = sections.findIndex((section) => section.id === activeSection);
       if (currentIndex + 1 == sections.length) {
-        console.log("🚀 Form data:", formData);
+        handleFormSubmit()
       } else if (currentIndex < sections.length - 1) {
         setDirection("left");
         setActiveSection(sections[currentIndex + 1].id);
@@ -107,6 +140,9 @@ const InsertModule = () => {
   };
 
   const handleMenuClick = (sectionId) => {
+    if (sectionId == 4){
+      setPreviewData(formData);
+    }
     setActiveSection(sectionId);
   };
 
@@ -200,6 +236,9 @@ const InsertModule = () => {
           <section className="w-full overflow-hidden">
             <div className="slider-container anchor-target" ref={containerRef} style={{ transform: getTransformValue() }}>
               {sections.map((section) => (
+                section.id == 5 ? (
+                  <ConfirmForm formData={formData}/>
+                ) : ( 
                 <div key={section.id} id={section.id} className="slider-item p-5 my-5 anchor-target rounded-2xl shadow bg-white border-4 border-gray-200">
                   <h2 className="h-[3rem] flex pl-5 justify-start items-center font-sans font-bold break-normal custom-bg-color-primary text-white text-xl rounded-2xl mb-8">
                     {section.title}
@@ -295,7 +334,7 @@ const InsertModule = () => {
                     ))}
                   </form>
                 </div>
-              ))}
+              )))}
             </div>
           </section>
           <div className="flex justify-center items-center bottom-5 gap-5 sticky">

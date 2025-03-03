@@ -12,6 +12,7 @@ const GlobalProvider = ({ children }) => {
   const [ratingNames, setRatingNames] = useState([]);
   const [gallery, setGallery] = useState([]);
   const [houseTypes, setHouseTypes] = useState([]);
+  const [previewData, setPreviewData] = useState({});
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -122,6 +123,7 @@ const GlobalProvider = ({ children }) => {
       });
   };
 
+
   const value = {
     results,
     filteredResults,
@@ -142,6 +144,8 @@ const GlobalProvider = ({ children }) => {
     handleOrderByChange,
     fetchHouse,
     house,
+    previewData,
+    setPreviewData,
   };
 
   return (

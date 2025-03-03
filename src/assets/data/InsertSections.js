@@ -88,7 +88,7 @@ const sections = [
       {
         label: "Nome dell'Host",
         type: "text",
-        id: "host-name",
+        id: "host_name",
         required: true,
         description:
           "Inserisci il tuo nome, questo verrà visualizzato dagli utenti interessati a contattarti",
@@ -96,7 +96,7 @@ const sections = [
       {
         label: "Numero di Telefono",
         type: "phone",
-        id: "host-phone",
+        id: "host_phone",
         required: true,
         description:
           "Questo sarà il numero di telefono a cui gli utenti potranno contattarti",
@@ -104,7 +104,7 @@ const sections = [
       {
         label: "Indirizzo Mail",
         type: "text",
-        id: "host-mail",
+        id: "host_mail",
         required: true,
         description:
           "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
@@ -112,7 +112,7 @@ const sections = [
       {
         label: "Prezzo per Notte",
         type: "number",
-        id: "price-pernight",
+        id: "price_pernight",
         required: true,
         description:
           "Questo sarà il prezzo visualizzato dagli utenti per una notte di soggiorno",
@@ -133,8 +133,8 @@ const sections = [
       {
         label: "Galleria Foto",
         type: "upload_multiple",
-        id: "photo-gallery",
-        description: "Carica altre foto della struttura",
+        id: "photo_gallery",
+        description: "Carica altre foto della struttura (Puoi selezionare uno o più file allo stesso momento)",
       },
     ],
   },
