@@ -69,6 +69,12 @@
   object-fit: contain;
 }
 
+.custom-gallery {
+  background-color: #101828;
+  padding: 1rem 3rem;
+  border-radius: 10px;
+}
+
 @media screen and (max-width: 768px) {
   .img-gallery {
     height: 300px;
