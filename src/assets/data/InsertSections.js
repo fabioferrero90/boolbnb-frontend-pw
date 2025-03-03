@@ -21,6 +21,14 @@ const sections = [
           "Inizia a scrivere l'indirizzo completo di numero civico e selezionane uno tra quelli proposti",
       },
       {
+        label: "Tipo di Struttura",
+        type: "select",
+        id: "house_type",
+        required: true,
+        description:
+          "Seleziona il tipo di struttura che stai inserendo",
+      },
+      {
         label: "Descrizione della struttura",
         type: "textarea",
         id: "abstract",

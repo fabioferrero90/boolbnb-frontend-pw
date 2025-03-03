@@ -2,7 +2,6 @@ import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const GlobalContext = createContext();
-
 const GlobalProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -12,6 +11,7 @@ const GlobalProvider = ({ children }) => {
   const [reviews, setReviews] = useState([]);
   const [ratingNames, setRatingNames] = useState([]);
   const [gallery, setGallery] = useState([]);
+  const [houseTypes, setHouseTypes] = useState([]);
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -61,7 +61,17 @@ const GlobalProvider = ({ children }) => {
       .get(`${APIendpoint}/reviews/ratings`)
       .then((res) => {
         setRatingNames(res.data);
-        console.log(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const fetchHouseTypes = () => {
+    axios
+      .get(`${APIendpoint}/houses/types`)
+      .then((res) => {
+        setHouseTypes(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -119,6 +129,8 @@ const GlobalProvider = ({ children }) => {
     gallery,
     renderReviews,
     reviews,
+    houseTypes,
+    fetchHouseTypes,
     orderedBy,
     setOrderedBy,
     handleOrderByChange,

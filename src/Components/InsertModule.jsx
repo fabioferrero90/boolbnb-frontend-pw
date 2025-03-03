@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useGlobalContext } from "../Contexts/GlobalContext";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -17,13 +18,17 @@ const InsertModule = () => {
   const fieldRefs = useRef({});
   const [services, setServices] = useState([]);
   const [formData, setFormData] = useState({});
+  const { houseTypes, fetchHouseTypes } = useGlobalContext();
+
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
+
 
   useEffect(() => {
     axios.get(`${APIendpoint}/houses/services`)
       .then((res) => setServices(res.data.map(service => service.name)))
       .catch((error) => console.error("Error fetching services:", error));
-  }, [APIendpoint]);
+    fetchHouseTypes();
+  }, []);
 
   useEffect(() => {
     const input = document.querySelector("input[name=services]");
@@ -92,8 +97,6 @@ const InsertModule = () => {
     const isValid = await validateSection();
     if (isValid) {
       const currentIndex = sections.findIndex((section) => section.id === activeSection);
-      console.log(sections.length)
-      console.log(currentIndex + 1)
       if (currentIndex + 1 == sections.length) {
         console.log("🚀 Form data:", formData);
       } else if (currentIndex < sections.length - 1) {
@@ -216,15 +219,31 @@ const InsertModule = () => {
                           {field.type === "phone" && (
                             <div className="flex">
                             <select className="px-3 py-1 form-select block rounded-xl border border-gray-300 focus:bg-white" name="phonePrefix" onChange={handleFieldChange}>
-                              <option value="+39">+39</option>
-                              <option value="+41">+41</option>
-                              {/* Add more options as needed */}
+                              <option value="+39">Italia(+39)</option>
+                              <option value="+41">Svizzera(+41)</option>
                             </select>
                             <input type="text" id={field.id} name={field.id} value={formData[field.id] || ""} onChange={handleFieldChange} ref={(el) => (fieldRefs.current[field.id] = el)} aria-describedby="helper-text-explanation" className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="333-7823290" required />
                           </div>
                           )}
                           {field.type === "number" && (
                             <input className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white" id={field.id} name={field.id} type="number" value={formData[field.id] || ""} onChange={handleFieldChange} ref={(el) => (fieldRefs.current[field.id] = el)} />
+                          )}
+                          {field.type === "select" && (
+                            <select
+                            className="px-3 py-1 form-input block w-full rounded-xl border border-gray-300 focus:bg-white"
+                            id={field.id}
+                            name={field.id}
+                            value={formData[field.id] || ''}
+                            onChange={handleFieldChange}
+                            ref={el => (fieldRefs.current[field.id] = el)}
+                          >
+                            <option value="" disabled>Seleziona tipologia</option>
+                            {houseTypes.map(houseType => (
+                              <option key={houseType.id} value={houseType.id}>
+                                {houseType.type_name}
+                              </option>
+                            ))}
+                          </select>
                           )}
                           {field.type === "textarea" && (
                             <textarea className="px-3 py-1 form-textarea block w-full rounded-xl border border-gray-300 focus:bg-white" id={field.id} name={field.id} rows="8" value={formData[field.id] || ""} onChange={handleFieldChange} ref={(el) => (fieldRefs.current[field.id] = el)}></textarea>
