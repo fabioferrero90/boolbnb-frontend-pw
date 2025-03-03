@@ -1,6 +1,6 @@
 const sections = [
   {
-    id: "section1",
+    id: "1",
     menuName: "Info",
     title: "1. Informazioni Generali",
     fields: [
@@ -21,6 +21,14 @@ const sections = [
           "Inizia a scrivere l'indirizzo completo di numero civico e selezionane uno tra quelli proposti",
       },
       {
+        label: "Tipo di Struttura",
+        type: "select",
+        id: "house_type",
+        required: true,
+        description:
+          "Seleziona il tipo di struttura che stai inserendo",
+      },
+      {
         label: "Descrizione della struttura",
         type: "textarea",
         id: "abstract",
@@ -31,7 +39,7 @@ const sections = [
     ],
   },
   {
-    id: "section2",
+    id: "2",
     menuName: "Struttura",
     title: "2. Dati della struttura",
     fields: [
@@ -73,9 +81,9 @@ const sections = [
     ],
   },
   {
-    id: "section3",
-    menuName: "Contatti",
-    title: "3. Dati di contatto",
+    id: "3",
+    menuName: "Gestione",
+    title: "3. Dati di gestione",
     fields: [
       {
         label: "Nome dell'Host",
@@ -87,7 +95,7 @@ const sections = [
       },
       {
         label: "Numero di Telefono",
-        type: "text",
+        type: "phone",
         id: "host-phone",
         required: true,
         description:
@@ -101,29 +109,37 @@ const sections = [
         description:
           "Questa sarà la mail a cui gli utenti potranno inviare messaggi e richieste di prenotazione",
       },
+      {
+        label: "Prezzo per Notte",
+        type: "number",
+        id: "price-pernight",
+        required: true,
+        description:
+          "Questo sarà il prezzo visualizzato dagli utenti per una notte di soggiorno",
+      },
     ],
   },
   {
-    id: "section4",
+    id: "4",
     menuName: "Foto",
     title: "4. Foto della struttura",
     fields: [
       {
         label: "Foto di Copertina",
-        type: "text",
+        type: "upload_single",
         id: "cover_photo",
         description: "Carica la foto di copertina",
       },
       {
         label: "Galleria Foto",
-        type: "text",
+        type: "upload_multiple",
         id: "photo-gallery",
         description: "Carica altre foto della struttura",
       },
     ],
   },
   {
-    id: "section5",
+    id: "5",
     menuName: "Conferma",
     title: "5. Conferma Inserimento",
     fields: [
