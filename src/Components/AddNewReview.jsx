@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { LuPlus } from "react-icons/lu";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
@@ -44,7 +45,8 @@ const AddNewReview = () => {
         className="cursor-pointer justify-center inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white custom-bg-color-primary rounded-lg hover:custom-teal-bg focus:ring-4 focus:outline-none focus:ring-blue-300"
         type="button"
       >
-        Clicca qui per lasciare la tua recensione
+        <LuPlus />
+        <span className="pl-1">Clicca qui per lasciare la tua recensione</span>
       </button>
       {isModalOpen && (
         <div

@@ -5,6 +5,9 @@ import { useParams } from "react-router-dom";
 import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import loadingimg from "../assets/loading.json";
 import { FaHeart, FaBed, FaPhone } from "react-icons/fa";
+import { FaHouseUser } from "react-icons/fa";
+import { TbPointFilled } from "react-icons/tb";
+import { RiHomeHeartFill } from "react-icons/ri";
 import { MdMeetingRoom, MdWc, MdOutlineEmail } from "react-icons/md";
 import { PiResizeLight } from "react-icons/pi";
 import { GiPositionMarker } from "react-icons/gi";
@@ -74,6 +77,7 @@ const HouseDetails = () => {
     type,
     price_pernight,
     likes,
+    services,
   } = house;
 
   return (
@@ -131,8 +135,28 @@ const HouseDetails = () => {
               </div>
             </div>
 
-            <div className="mt-5 mx-5">
-              <h3 className="font-bold underline">Contatta l'host</h3>
+            <div className="mx-auto max-w-screen-xl px-5 pt-5">
+              <div className="flex items-center text-xl md:mt-6 mt-2">
+                <RiHomeHeartFill />{" "}
+                <span className="pl-2 font-semi-bold">Servizi:</span>
+              </div>
+              {services.map((service) => (
+                <div className="flex items-center py-2">
+                  <span className="pr-2">
+                    <TbPointFilled />
+                  </span>
+                  {service.name}
+                </div>
+              ))}
+            </div>
+
+            <div className="md:mt-10 mt-5 mx-5">
+              <div className="font-semi-bold flex items-center text-xl">
+                <span className="">
+                  <FaHouseUser />
+                </span>
+                <span className="pl-2 font-semi-bold">Contatta l'host:</span>
+              </div>
               <div className="flex flex-col lg:flex-row md:flex-row mt-2">
                 <div className="flex items-center mt-1 hover:underline">
                   <MdOutlineEmail />{" "}
@@ -180,7 +204,7 @@ const HouseDetails = () => {
         <div className="mx-auto max-w-screen-xl px-5">
           <h1 className="mt-5 font-bold text-2xl px-8">RECENSIONI:</h1>
           <Reviews />
-          <div className="m-10 pt-10">
+          <div className="m-10 pt-10 text-center">
             <h1 className="text-2xl font-medium mb-5">
               Il tuo parere è importante per noi, lascia una recensione per
               dirci cosa ne pensi

@@ -36,6 +36,12 @@ const GlobalProvider = ({ children }) => {
     return splittedWord.join(" ");
   }
 
+  // const renderServices = (id) => {
+  //   axios.get(`${APIendpoint}/houses/services/${id} `).then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
+
   const fetchResults = (value) => {
     const query = filtraParoleChiave(value);
     axios
