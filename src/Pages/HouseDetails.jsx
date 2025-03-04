@@ -92,9 +92,8 @@ const HouseDetails = () => {
           </div>
           <div className="flex items-center">
             <FaHeart
-              className={`text-2xl cursor-pointer ${
-                liked ? "text-red-500" : "text-green-400"
-              }`}
+              className={`text-2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
+                }`}
               onClick={() => manageLike(id)}
             />
             <p className="pl-2">{likes} like</p>
@@ -102,7 +101,7 @@ const HouseDetails = () => {
         </div>
 
         <div className="mx-auto max-w-screen-xl px-8">
-          <div className="w-full mb-5 lg:mb-0">
+          <div className="w-full mb-5 lg:mb-0 custom-gallery ">
             <Gallery />
           </div>
         </div>
