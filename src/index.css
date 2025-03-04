@@ -93,8 +93,17 @@
 }
 
 .reviews-box {
-  max-height: 135px;
-  overflow-y: hidden;
+  max-height: 150px;
+  padding: 20px;
+}
+
+.reviews-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3em;
 }
 
 @media screen and (max-width: 410px) {
