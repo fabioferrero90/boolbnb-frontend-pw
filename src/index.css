@@ -50,20 +50,15 @@
   scroll-margin-top: 20vh;
 }
 
-img, video {
-  max-width: 100%;
-}
-
-
 .img-gallery {
   margin: 0 auto;
   height: 500px;
   object-fit: contain;
 }
 
-.img-box {
-  max-height: 180px;
-  overflow: hidden;
+.images-g{
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .custom-gallery {
@@ -75,13 +70,6 @@ img, video {
 @media screen and (max-width: 768px) {
   .img-gallery {
     height: 300px;
-  }
-
-  .img-scroller {
-    img {
-      max-height: 100px;
-      width: 50%;
-    }
   }
 
 
@@ -105,15 +93,4 @@ img, video {
   .like {
     flex-direction: column;
   }
-
-  .img-scroller {
-    img {
-      max-height: 80px;
-    }
-  }
-
-  .img-box {
-    max-height: 45px;
-  }
-
 }
