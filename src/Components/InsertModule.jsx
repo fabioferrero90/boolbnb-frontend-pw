@@ -117,10 +117,18 @@ const InsertModule = () => {
       houseData.services.push({ name: formData.services[i] });
     }
 
-    axios.post(`${APIendpoint}/houses`, houseData)
+    const dataToSend = new FormData();
+
+    for (let key in houseData){
+      if (key == "services" || key == "address") {
+        dataToSend.append(key, JSON.stringify(houseData[key]));
+      } else {
+        dataToSend.append(key, houseData[key]);
+      }
+    }
+    axios.post(`${APIendpoint}/houses`, dataToSend, {headers: {'Content-Type': 'multipart/form-data'}})
       .then((res) => {
         console.log("Success:", res.data);
-        window.location.href = `/houses/${res.data.id}`;
       })
       .catch((error) => console.error("Errore nell'inserimento della casa:", error));
   };
@@ -304,11 +312,11 @@ const InsertModule = () => {
                                 const file = e.target.files[0];
                                 if (file) {
                                   const reader = new FileReader();
-                                  reader.onloadend = () => setFormData((prevFormData) => ({ ...prevFormData, [field.id]: reader.result }));
+                                  reader.onloadend = () => setFormData((prevFormData) => ({ ...prevFormData, [field.id]: file }));
                                   reader.readAsDataURL(file);
                                 }
                               }} />
-                              {formData[field.id] && <img src={formData[field.id]} alt="Preview" className="mt-2 h-32 w-32 object-cover" />}
+                              {formData[field.id] && <img src={URL.createObjectURL(formData[field.id])} alt="Preview" className="mt-2 h-32 w-32 object-cover" />}
                             </div>
                           )}
                           {field.type === "upload_multiple" && (

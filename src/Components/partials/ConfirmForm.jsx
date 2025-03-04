@@ -34,7 +34,7 @@ import { PiResizeLight } from "react-icons/pi";const ConfirmForm = () => {
         <a>
           <img
             className="rounded-t-lg w-full h-[30vh] object-cover"
-            src={previewData.cover_photo || "/previewPlaceholder.png"} 
+            src={URL.createObjectURL(previewData.cover_photo) || "/previewPlaceholder.png"} 
             alt=""
           />
         </a>
