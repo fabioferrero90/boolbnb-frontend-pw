@@ -50,23 +50,15 @@
   scroll-margin-top: 20vh;
 }
 
-
 .img-gallery {
   margin: 0 auto;
   height: 500px;
   object-fit: contain;
 }
 
-.img-scroller {
-  img {
-    max-height: 180px;
-    object-fit: contain;
-  }
-}
-
-.img-box {
-  max-height: 95px;
-  object-fit: contain;
+.images-g{
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .custom-gallery {
@@ -80,36 +72,25 @@
     height: 300px;
   }
 
-  .img-scroller {
-    img {
-      max-height: 100px;
-    }
-  }
-
-  .img-box {
-    max-height: 50px;
-  }
 
 }
 
 .reviews-box {
-  max-height: 135px;
-  overflow-y: hidden;
+  max-height: 150px;
+  padding: 20px;
+}
+
+.reviews-text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 3em;
 }
 
 @media screen and (max-width: 410px) {
   .like {
     flex-direction: column;
   }
-
-  .img-scroller {
-    img {
-      max-height: 80px;
-    }
-  }
-
-  .img-box {
-    max-height: 45px;
-  }
-
 }

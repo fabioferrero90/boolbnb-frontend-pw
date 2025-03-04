@@ -30,6 +30,9 @@ const Reviews = () => {
     setSelectedReview(null); // Resetta la recensione selezionata
   };
 
+  const date = new Date(selectedReview?.date);
+  const formattedDate = date.toLocaleDateString('it-IT');
+
   return (
     <div className="mt-5">
       <Swiper
@@ -56,7 +59,7 @@ const Reviews = () => {
                 <div className="relative group mx-5">
                   <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r custom-bg-color-primary blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
                   <div
-                    className="relative p-6 leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
+                    className="relative leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
                     onClick={() => handleReviewClick(review)}
                   >
                     <div className="flex items-center space-x-4">
@@ -74,7 +77,7 @@ const Reviews = () => {
                         </p>
                       </div>
                     </div>
-                    <p className="leading-normal text-md mt-4 text-center text-white">
+                    <p className="leading-normal text-md mt-4 text-center text-white reviews-text">
                       {review.review_text}
                     </p>
                   </div>
@@ -89,11 +92,12 @@ const Reviews = () => {
         <div
           id="static-modal"
           className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full modal-custom-bg"
-          aria-hidden="true"
+          aria-hidden="true" justify-betwee
         >
           <div className="relative p-4 w-full max-w-2xl max-h-full">
-            <div className="relative bg-white rounded-lg shadow-sm">
-              <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
+            <div className="relativerounded-lg shadow-sm">
+              <div className="flex items-centern p-4 justify-between md:p-5 border-b rounded-t-md border-gray-200 custom-bg-color-primary text-white ">
+
                 <div className="flex items-center">
                   <img
                     src="/user-propic/ProfilePH.png"
@@ -104,38 +108,41 @@ const Reviews = () => {
                     {selectedReview?.name}
                   </h3>
                 </div>
-                <button
-                  type="button"
-                  className="text-gray-400 bg-transparent  hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
-                  onClick={closeModal}
-                >
-                  <svg
-                    className="w-3 h-3"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 14 14"
+                <div className="flex items-center">
+                  <p className="text-sm text-gray-300">{formattedDate}</p>
+                  <button
+                    type="button"
+                    className="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center cursor-pointer md:ml-4 ml-2"
+                    onClick={closeModal}
                   >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                    />
-                  </svg>
-                </button>
+                    <svg
+                      className="w-3 h-3"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 14 14"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+                      />
+                    </svg>
+                  </button>
+                </div>
               </div>
 
-              <div className="p-4 md:p-5 space-y-4">
-                <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+              <div className="p-4 md:p-5 space-y-4 bg-white rounded-b-md">
+                <p className="text-base leading-relax">
                   {selectedReview?.review_text}
                 </p>
                 <p className="text-sm text-gray-400">
-                  Rating:{" "}
+                  Voto:{" "}
                   {ratingNames.find(
                     (rating) => rating.id === selectedReview?.rating_id
-                  )?.rating_name || "No rating"}
+                  )?.rating_name || "Nessun voto"}
                 </p>
               </div>
             </div>

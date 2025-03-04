@@ -91,11 +91,13 @@ const HouseDetails = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <FaHeart
-              className={`text-2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
-                }`}
-              onClick={() => manageLike(id)}
-            />
+            <div className="border p-3 rounded-full custom-bg-color-primary">
+              <FaHeart
+                className={`text-2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
+                  }`}
+                onClick={() => manageLike(id)}
+              />
+            </div>
             <p className="pl-2">{likes} like</p>
           </div>
         </div>
