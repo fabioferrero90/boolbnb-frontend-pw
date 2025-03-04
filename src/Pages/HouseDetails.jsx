@@ -90,11 +90,12 @@ const HouseDetails = () => {
               {type} di {host_name}
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center no-select">
             <div className="border p-3 rounded-full custom-bg-color-primary">
               <FaHeart
-                className={`text-2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
-                  }`}
+                className={`text-2xl cursor-pointer ${
+                  liked ? "text-red-500" : "text-green-400"
+                }`}
                 onClick={() => manageLike(id)}
               />
             </div>
@@ -102,7 +103,7 @@ const HouseDetails = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-screen-xl px-8">
+        <div className="mx-auto max-w-screen-xl px-8 no-select">
           <div className="w-full mb-5 lg:mb-0 custom-gallery ">
             <Gallery />
           </div>
@@ -203,7 +204,6 @@ const HouseDetails = () => {
 
       <div className="px-8 py-15">
         <div className="mx-auto max-w-screen-xl px-5">
-          <h1 className="mt-5 font-bold text-2xl px-8">RECENSIONI:</h1>
           <Reviews />
           <div className="m-10 pt-10 text-center">
             <h1 className="text-2xl font-medium mb-5">

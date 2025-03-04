@@ -21,10 +21,13 @@ const Gallery = () => {
           "--swiper-pagination-color": "#fff",
         }}
         spaceBetween={10}
-        navigation={true}
+        navigation={{
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        }}
         thumbs={{ swiper: thumbsSwiper }}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 mb-6"
+        className="mySwiper2 md:mb-6"
       >
         <SwiperSlide key={`house-slide-${house.id}`}>
           <img
@@ -43,6 +46,8 @@ const Gallery = () => {
               />
             </SwiperSlide>
           ))}
+        <div className="swiper-button-next arrow-nav"></div>
+        <div className="swiper-button-prev arrow-nav"></div>
       </Swiper>
       <Swiper
         onSwiper={setThumbsSwiper}
@@ -51,14 +56,14 @@ const Gallery = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper rounded"
+        className="mySwiper rounded hidden md:block"
       >
         <SwiperSlide key={`thumb-house-${house.id}`}>
           <div className="">
             <img
               src={house.cover_image}
               alt={house.name}
-              className="images-g"
+              className="images-g hidden md:block"
             />
           </div>
         </SwiperSlide>
@@ -69,7 +74,7 @@ const Gallery = () => {
                 <img
                   src={image.photo_url}
                   alt={image.house_id}
-                  className="images-g"
+                  className="images-g hidden md:block"
                 />
               </div>
             </SwiperSlide>
