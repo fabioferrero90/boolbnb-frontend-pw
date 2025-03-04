@@ -6,7 +6,7 @@ import { useGlobalContext } from "../Contexts/GlobalContext";
 
 const AddNewReview = () => {
   const { renderReviews } = useGlobalContext();
-  const api_url = "http://localhost:3000/reviews";
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;  
   const { id } = useParams();
 
   const initialFormReview = {
@@ -26,7 +26,7 @@ const AddNewReview = () => {
 
   const handlerSubmit = () => {
     axios
-      .post(api_url, formReview, {
+      .post(`${APIendpoint}/reviews`, formReview, {
         headers: { "Content-Type": "application/json" },
       })
       .then((res) => {
