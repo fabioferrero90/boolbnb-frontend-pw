@@ -90,7 +90,7 @@ const HouseDetails = () => {
               {type} di {host_name}
             </div>
           </div>
-          <div className="flex items-center">
+          <div className="flex items-center no-select">
             <div className="border p-3 rounded-full custom-bg-color-primary">
               <FaHeart
                 className={`text-2xl cursor-pointer ${liked ? "text-red-500" : "text-green-400"
@@ -102,7 +102,7 @@ const HouseDetails = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-screen-xl px-8">
+        <div className="mx-auto max-w-screen-xl px-8 no-select">
           <div className="w-full mb-5 lg:mb-0 custom-gallery ">
             <Gallery />
           </div>
