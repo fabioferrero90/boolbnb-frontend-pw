@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import notFound from "../assets/notfound.json";
 
 const Reviews = () => {
   const { renderReviews, reviews, ratingNames, fetchRatings } =
@@ -31,10 +32,18 @@ const Reviews = () => {
   };
 
   const date = new Date(selectedReview?.date);
-  const formattedDate = date.toLocaleDateString('it-IT');
+  const formattedDate = date.toLocaleDateString("it-IT");
 
   return (
-    <div className="mt-5">
+    <div>
+      {(reviews.length > 0 && (
+        <h1 className="mt-5 font-bold text-2xl px-8 pb-8">RECENSIONI:</h1>
+      )) ||
+        (reviews.length === 0 && (
+          <h1 className="mt-5 text-2xl px-8 text-center">
+            Nessuna recensione disponibile
+          </h1>
+        ))}
       <Swiper
         slidesPerView={3}
         pagination={{
@@ -54,36 +63,38 @@ const Reviews = () => {
           );
 
           return (
-            <SwiperSlide key={review.id}>
-              <div className="text-sm leading-6 m-2">
-                <div className="relative group mx-5">
-                  <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r custom-bg-color-primary blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                  <div
-                    className="relative leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
-                    onClick={() => handleReviewClick(review)}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src="/user-propic/ProfilePH.png"
-                        className="w-12 h-12 bg-center bg-cover border rounded-full"
-                        alt={review.name}
-                      />
-                      <div>
-                        <h3 className="text-lg text-white font-semibold">
-                          {review.name}
-                        </h3>
-                        <p className="text-gray-400 text-md">
-                          {matchingRating ? matchingRating.rating_name : ""}
-                        </p>
+            <>
+              <SwiperSlide key={review.id}>
+                <div className="text-sm leading-6 m-2">
+                  <div className="relative group mx-5">
+                    <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r custom-bg-color-primary blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
+                    <div
+                      className="relative leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
+                      onClick={() => handleReviewClick(review)}
+                    >
+                      <div className="flex items-center space-x-4">
+                        <img
+                          src="/user-propic/ProfilePH.png"
+                          className="w-12 h-12 bg-center bg-cover border rounded-full"
+                          alt={review.name}
+                        />
+                        <div>
+                          <h3 className="text-lg text-white font-semibold">
+                            {review.name}
+                          </h3>
+                          <p className="text-gray-400 text-md">
+                            {matchingRating ? matchingRating.rating_name : ""}
+                          </p>
+                        </div>
                       </div>
+                      <p className="leading-normal text-md mt-4 text-center text-white reviews-text">
+                        {review.review_text}
+                      </p>
                     </div>
-                    <p className="leading-normal text-md mt-4 text-center text-white reviews-text">
-                      {review.review_text}
-                    </p>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            </>
           );
         })}
       </Swiper>
@@ -92,12 +103,12 @@ const Reviews = () => {
         <div
           id="static-modal"
           className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full modal-custom-bg"
-          aria-hidden="true" justify-betwee
+          aria-hidden="true"
+          justify-betwee
         >
           <div className="relative p-4 w-full max-w-2xl max-h-full">
             <div className="relativerounded-lg shadow-sm">
               <div className="flex items-centern p-4 justify-between md:p-5 border-b rounded-t-md border-gray-200 custom-bg-color-primary text-white ">
-
                 <div className="flex items-center">
                   <img
                     src="/user-propic/ProfilePH.png"
@@ -147,11 +158,10 @@ const Reviews = () => {
               </div>
             </div>
           </div>
-        </div >
+        </div>
       )}
-    </div >
+    </div>
   );
 };
 
 export default Reviews;
-
