@@ -51,10 +51,12 @@ const Gallery = () => {
         freeMode={true}
         watchSlidesProgress={true}
         modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper mb-10 img-scroller rounded"
+        className="mySwiper mb-10 rounded"
       >
         <SwiperSlide key={`thumb-house-${house.id}`}>
-          <img src={house.cover_image} alt={house.name} className="contain" />
+          <div className="img-box">
+            <img src={house.cover_image} alt={house.name} className="" />
+          </div>
         </SwiperSlide>
         {gallery &&
           gallery.map((image, index) => (
