@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useGlobalContext } from "../Contexts/GlobalContext";
+import { useNavigate } from "react-router-dom";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 import usePlacesAutocomplete, { getGeocode } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
@@ -19,6 +20,8 @@ const InsertModule = () => {
   const fieldRefs = useRef({});
   const [services, setServices] = useState([]);
 
+  const navigate = useNavigate();
+
   const debugFormData = {
     host_name: "Mario Rossi",
     house_name: "Casa di Mario",
@@ -34,7 +37,7 @@ const InsertModule = () => {
     services: ["Wi-Fi", "Parcheggio", "Cucina"],
   };
 
-  const [formData, setFormData] = useState(debugFormData);
+  const [formData, setFormData] = useState({});
   const { houseTypes, fetchHouseTypes, setPreviewData } = useGlobalContext();
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
@@ -167,6 +170,8 @@ const InsertModule = () => {
       })
       .then((res) => {
         console.log("Success:", res.data);
+        alert("Casa inserita con successo");
+        navigate("/");
       })
       .catch((error) =>
         console.error("Errore nell'inserimento della casa:", error)
