@@ -179,7 +179,7 @@ const Results = () => {
               key={index}
               className={`no-select relative w-full bg-white border border-gray-200 rounded-lg shadow-sm flex flex-col justify-between`}
             >
-              <a href="#">
+              <a href={`/houses/${house.id}`}>
                 <img
                   className="rounded-t-lg w-full h-[30vh] object-cover"
                   src={house.cover_image}
@@ -189,15 +189,20 @@ const Results = () => {
               <div className="p-5 flex flex-col flex-grow">
                 <section className="flex justify-between pb-5">
                   <div>
-                    <a href="#">
+                    <div>
                       <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-                        <p>{house.name}</p>
+                        <a
+                          href={`/houses/${house.id}`}
+                          className="hover:text-gray-700"
+                        >
+                          {house.name}
+                        </a>
                         <p className="mb-1 font-normal text-xs text-gray-700">
                           {house.address.city} [{house.address.province}] -{" "}
                           {house.address.address}
                         </p>
                       </h5>
-                    </a>
+                    </div>
                     <a href="#">
                       <span className="text-xs">Tipologia: </span>
                       <span className="mb-3 text-xs tracking-tight text-gray-500 bg-gray-200 px-3 rounded-full">
