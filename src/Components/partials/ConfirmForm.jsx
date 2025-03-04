@@ -32,10 +32,10 @@ import { PiResizeLight } from "react-icons/pi";const ConfirmForm = () => {
         className={`relative max-w-[350px] shrink-0 bg-white border-2 border-gray-200 rounded-lg shadow-sm flex flex-col justify-between`}
       >
         <a>
-          <img
+        <img
             className="rounded-t-lg w-full h-[30vh] object-cover"
-            src={URL.createObjectURL(previewData.cover_photo) || "/previewPlaceholder.png"} 
-            alt=""
+            src={previewData.cover_photo instanceof File ? URL.createObjectURL(previewData.cover_photo) : "/previewPlaceholder.png"}
+            alt="Preview"
           />
         </a>
         <div className="p-5 flex flex-col flex-grow">
@@ -112,13 +112,13 @@ import { PiResizeLight } from "react-icons/pi";const ConfirmForm = () => {
             <strong>Termini e Condizioni di BoolB&B</strong>
           </h4>
           <ol>
-            <li class="py-2 text-sm pt-3">
+            <li className="py-2 text-sm pt-3">
               Prima di completare la registrazione della tua struttura su
               BoolB&B, ti invitiamo a leggere attentamente i seguenti
               termini e condizioni, cliccando sul tasto di "Conferma"
               accetti integralmente i presenti termini e condizioni.
             </li>
-            <li class="py-2">
+            <li className="py-2">
               1. <strong>Accettazione dei Termini</strong>
               <br/>
               Registrando la
@@ -127,7 +127,7 @@ import { PiResizeLight } from "react-icons/pi";const ConfirmForm = () => {
               qualsiasi dei termini, ti preghiamo di non procedere con la
               registrazione.
             </li>
-            <li class="py-2">
+            <li className="py-2">
               2. <strong>Responsabilità dell'Utente</strong>
               <br/>
               Sei responsabile dell'accuratezza e della veridicità delle
@@ -135,13 +135,13 @@ import { PiResizeLight } from "react-icons/pi";const ConfirmForm = () => {
               responsabile per eventuali errori o omissioni nelle
               informazioni fornite dagli utenti.
             </li>
-            <li class="py-2">
+            <li className="py-2">
               3. <strong>Uso del Sito</strong>
               <br/>
               L'uso del sito BoolB&B è consentito solo a scopi leciti. Non è consentito l'uso del
               sito per attività fraudolente, ingannevoli o illegali.
             </li>
-            <li class="py-2">
+            <li className="py-2">
               4. <strong>Modifiche ai Termini</strong>
               <br/>
               BoolB&B si riserva il diritto di modificare i termini e le condizioni in

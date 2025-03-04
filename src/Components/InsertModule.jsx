@@ -18,7 +18,24 @@ const InsertModule = () => {
   const containerRef = useRef(null);
   const fieldRefs = useRef({});
   const [services, setServices] = useState([]);
-  const [formData, setFormData] = useState({});
+
+  const debugFormData = {
+    host_name: "Mario Rossi",
+    house_name: "Casa di Mario",
+    host_mail: "mario@example.com",
+    host_phone: "+393337823290",
+    rooms: 3,
+    beds: 6,
+    bathrooms: 2,
+    size: 100,
+    house_type: 1,
+    abstract: "Casa molto bella",
+    price_pernight: 100,
+    services: ["Wi-Fi", "Parcheggio", "Cucina"],
+  };
+
+
+  const [formData, setFormData] = useState(debugFormData);
   const { houseTypes, fetchHouseTypes, setPreviewData } = useGlobalContext();
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
@@ -242,18 +259,18 @@ const InsertModule = () => {
           </ol>
 
           <section className="w-full overflow-hidden">
-            <div className="slider-container anchor-target" ref={containerRef} style={{ transform: getTransformValue() }}>
+            <div key="slider-container" className="slider-container anchor-target" ref={containerRef} style={{ transform: getTransformValue() }}>
               {sections.map((section) => (
                 section.id == 5 ? (
                   <ConfirmForm formData={formData}/>
                 ) : ( 
-                <div key={section.id} id={section.id} className="slider-item p-5 my-5 anchor-target rounded-2xl shadow bg-white border-4 border-gray-200">
+                <div key={`section-${section.id}`} id={section.id} className="slider-item p-5 my-5 anchor-target rounded-2xl shadow bg-white border-4 border-gray-200">
                   <h2 className="h-[3rem] flex pl-5 justify-start items-center font-sans font-bold break-normal custom-bg-color-primary text-white text-xl rounded-2xl mb-8">
                     {section.title}
                   </h2>
                   <form className="px-8">
                     {section.fields.map((field, idx) => (
-                      <div key={idx} className="md:flex mb-6">
+                      <div key={`field-${idx}`} className="md:flex mb-6">
                         <div className="md:w-1/5">
                           <label className="block text-gray-800 font-bold md:text-left mb-3 md:mb-0 pr-4" htmlFor={field.id}>
                             {field.label}
@@ -316,7 +333,7 @@ const InsertModule = () => {
                                   reader.readAsDataURL(file);
                                 }
                               }} />
-                              {formData[field.id] && <img src={URL.createObjectURL(formData[field.id])} alt="Preview" className="mt-2 h-32 w-32 object-cover" />}
+                              {formData[field.id] instanceof File && <img src={URL.createObjectURL(formData[field.id])} alt="Preview" className="mt-2 h-32 w-32 object-cover" />}
                             </div>
                           )}
                           {field.type === "upload_multiple" && (
