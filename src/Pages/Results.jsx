@@ -243,11 +243,12 @@ const Results = () => {
                 <div className="flex justify-center items-center pt-3 pb-1 text-xs">
                   <FaHeart className="w-5 h-5 text-red-400 " />
                   <span className="px-1 font-bold">{house.likes}</span>-
-                  <span className="px-1 font-bold">{`${getRatingName(
-                    house.avg_rating
-                  )} -`}</span>
+                  <span className="pl-1 font-bold">
+                    {`${getRatingName(house.avg_rating)}` ||
+                      "Nessuna Valutazione"}
+                  </span>
                   <span className="px-1 text-gray-500">
-                    {house.reviews} recensioni
+                    - {house.reviews} recensioni
                   </span>
                 </div>
                 <div className="mt-auto">

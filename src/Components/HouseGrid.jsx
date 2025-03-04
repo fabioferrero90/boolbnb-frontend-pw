@@ -28,11 +28,9 @@ const HouseGrid = () => {
         fetchHouses();
       });
     } else {
-      axios
-        .put(`${APIendpoint}/houses/dislike/${id}`)
-        .then((response) => {
-          fetchHouses();
-        });
+      axios.put(`${APIendpoint}/houses/dislike/${id}`).then((response) => {
+        fetchHouses();
+      });
     }
   };
 
@@ -50,8 +48,9 @@ const HouseGrid = () => {
           houses.slice(0, 3).map((house, index) => (
             <div
               key={index}
-              className={`relative w-full bg-white border-gray-200 rounded-lg shadow-sm flex flex-col justify-between ${index === 0 ? "sm:col-span-2 lg:col-span-1" : ""
-                }`}
+              className={`relative w-full bg-white border-gray-200 rounded-lg shadow-sm flex flex-col justify-between ${
+                index === 0 ? "sm:col-span-2 lg:col-span-1" : ""
+              }`}
             >
               <a href={`/houses/${house.id}`}>
                 <img
@@ -63,15 +62,20 @@ const HouseGrid = () => {
                 <div>
                   <section className="flex justify-between pb-2">
                     <div>
-                      <a href="#">
+                      <div>
                         <h5 className="text-2xl font-bold tracking-tight text-gray-900">
-                          <p>{house.name}</p>
+                          <a
+                            href={`/houses/${house.id}`}
+                            className="hover:text-gray-700"
+                          >
+                            {house.name}
+                          </a>
                           <p className="mb-1 font-normal text-xs text-gray-700">
                             {house.address.city} [{house.address.province}] -{" "}
                             {house.address.address}
                           </p>
                         </h5>
-                      </a>
+                      </div>
                     </div>
                     <div>
                       <p className="flex items-center pt-1">
@@ -85,18 +89,20 @@ const HouseGrid = () => {
                     </div>
                   </section>
                   <p className="my-3 font-normal text-gray-500 h-20 overflow-hidden">
-                    {house.abstract.length > 120 ? house.abstract.slice(0, 120) + "..." : house.abstract}
+                    {house.abstract.length > 120
+                      ? house.abstract.slice(0, 120) + "..."
+                      : house.abstract}
                   </p>
                 </div>
                 <div className="flex justify-center items-center pt-3 pb-1 text-xs">
                   <FaHeart className="w-5 h-5 text-red-400 " />
                   <span className="px-1 font-bold">{house.likes}</span>-
-                  <span className="px-1 font-bold">{
-                    ratingNames.find((r) => r.id === Number(house.avg_rating))
-                      ?.rating_name
-                  }</span>
+                  <span className="pl-1 font-bold">
+                    {ratingNames.find((r) => r.id === Number(house.avg_rating))
+                      ?.rating_name || "Nessuna Valutazione"}
+                  </span>
                   <span className="px-1 text-gray-500">
-                    {house.reviews} recensioni
+                    - {house.reviews} recensioni
                   </span>
                 </div>
                 <div className="mt-auto">
@@ -123,8 +129,9 @@ const HouseGrid = () => {
                   </a>
                 </div>
                 <div
-                  className={`cursor-pointer flex-col absolute top-[2%] border border-gray-400 right-[2%] bg-white rounded-full w-8 h-8 flex items-center justify-center ${liked[index] ? "text-red-400" : "text-gray-400"
-                    }`}
+                  className={`cursor-pointer flex-col absolute top-[2%] border border-gray-400 right-[2%] bg-white rounded-full w-8 h-8 flex items-center justify-center ${
+                    liked[index] ? "text-red-400" : "text-gray-400"
+                  }`}
                   onClick={() => manageLike(house.id, index)}
                 >
                   <FaHeart className="w-4 h-4" />
