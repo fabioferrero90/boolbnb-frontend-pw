@@ -33,7 +33,7 @@ const Gallery = () => {
           <img
             src={house.cover_image}
             alt={house.name}
-            className="rounded img-gallery"
+            className="rounded img-gallery p-4"
           />
         </SwiperSlide>
         {gallery &&

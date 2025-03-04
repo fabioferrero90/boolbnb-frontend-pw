@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import notFound from "../assets/notfound.json";
+import { Player, Controls } from "@lottiefiles/react-lottie-player";
+import notFoundRev from "/notFoundReviews.json";
 
 const Reviews = () => {
   const { renderReviews, reviews, ratingNames, fetchRatings } =
@@ -36,14 +37,22 @@ const Reviews = () => {
 
   return (
     <div>
-      {(reviews.length > 0 && (
+      {reviews.length > 0 ? (
         <h1 className="mt-5 font-bold text-2xl px-8 pb-8">RECENSIONI:</h1>
-      )) ||
-        (reviews.length === 0 && (
-          <h1 className="mt-5 text-2xl px-8 text-center">
-            Nessuna recensione disponibile
-          </h1>
-        ))}
+      ) : (
+        <Player
+          autoplay
+          loop
+          src={notFoundRev}
+          style={{ height: "200px", width: "200px" }}
+        >
+          <Controls visible={false} buttons={["play", "repeat", "frame", "debug"]} />
+        </Player>
+      )}
+
+      {reviews.length === 0 && (
+        <h1 className="mt-5 text-2xl px-8 text-center">Nessuna recensione disponibile</h1>
+      )}
       <Swiper
         slidesPerView={3}
         pagination={{
