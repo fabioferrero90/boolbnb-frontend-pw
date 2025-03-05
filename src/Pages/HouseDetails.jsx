@@ -139,11 +139,16 @@ const HouseDetails = () => {
 
             <div className="mx-auto max-w-screen-xl px-5 pt-5">
               <div className="flex items-center text-xl md:mt-6 mt-2">
-                <RiHomeHeartFill />{" "}
+                <RiHomeHeartFill />
                 <span className="pl-2 font-semi-bold">Servizi:</span>
               </div>
+              {services.length === 0 && (
+                <h1 className="mt-5 text-2xl px-8 text-center">
+                  Nessun servizio disponibile
+                </h1>
+              )}
               {services.map((service) => (
-                <div className="flex items-center py-2">
+                <div className="flex items-center py-2" key={service.id}>
                   <span className="pr-2">
                     <TbPointFilled />
                   </span>

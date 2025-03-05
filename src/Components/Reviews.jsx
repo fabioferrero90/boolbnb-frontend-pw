@@ -46,12 +46,17 @@ const Reviews = () => {
           src={notFoundRev}
           style={{ height: "200px", width: "200px" }}
         >
-          <Controls visible={false} buttons={["play", "repeat", "frame", "debug"]} />
+          <Controls
+            visible={false}
+            buttons={["play", "repeat", "frame", "debug"]}
+          />
         </Player>
       )}
 
       {reviews.length === 0 && (
-        <h1 className="mt-5 text-2xl px-8 text-center">Nessuna recensione disponibile</h1>
+        <h1 className="mt-5 text-2xl px-8 text-center">
+          Nessuna recensione disponibile
+        </h1>
       )}
       <Swiper
         slidesPerView={3}
@@ -72,38 +77,36 @@ const Reviews = () => {
           );
 
           return (
-            <>
-              <SwiperSlide key={review.id}>
-                <div className="text-sm leading-6 m-2">
-                  <div className="relative group mx-5">
-                    <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r custom-bg-color-primary blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
-                    <div
-                      className="relative leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
-                      onClick={() => handleReviewClick(review)}
-                    >
-                      <div className="flex items-center space-x-4">
-                        <img
-                          src="/user-propic/ProfilePH.png"
-                          className="w-12 h-12 bg-center bg-cover border rounded-full"
-                          alt={review.name}
-                        />
-                        <div>
-                          <h3 className="text-lg text-white font-semibold">
-                            {review.name}
-                          </h3>
-                          <p className="text-gray-400 text-md">
-                            {matchingRating ? matchingRating.rating_name : ""}
-                          </p>
-                        </div>
+            <SwiperSlide key={`review-${review.id}`}>
+              <div className="text-sm leading-6 m-2">
+                <div className="relative group mx-5">
+                  <div className="absolute transition rounded-lg opacity-25 -inset-1 bg-gradient-to-r custom-bg-color-primary blur duration-400 group-hover:opacity-100 group-hover:duration-200"></div>
+                  <div
+                    className="relative leading-none rounded-lg reviews-box custom-bg-color-primary ring-1 ring-gray-900/5 cursor-pointer"
+                    onClick={() => handleReviewClick(review)}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src="/user-propic/ProfilePH.png"
+                        className="w-12 h-12 bg-center bg-cover border rounded-full"
+                        alt={review.name}
+                      />
+                      <div>
+                        <h3 className="text-lg text-white font-semibold">
+                          {review.name}
+                        </h3>
+                        <p className="text-gray-400 text-md">
+                          {matchingRating ? matchingRating.rating_name : ""}
+                        </p>
                       </div>
-                      <p className="leading-normal text-md mt-4 text-center text-white reviews-text">
-                        {review.review_text}
-                      </p>
                     </div>
+                    <p className="leading-normal text-md mt-4 text-center text-white reviews-text">
+                      {review.review_text}
+                    </p>
                   </div>
                 </div>
-              </SwiperSlide>
-            </>
+              </div>
+            </SwiperSlide>
           );
         })}
       </Swiper>
