@@ -95,7 +95,7 @@ const Reviews = () => {
                         <h3 className="text-lg text-white font-semibold">
                           {review.name}
                         </h3>
-                        <p className="text-gray-400 text-md">
+                        <p className="text-green-400 text-md">
                           {matchingRating ? matchingRating.rating_name : ""}
                         </p>
                       </div>
