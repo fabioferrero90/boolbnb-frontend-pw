@@ -6,11 +6,11 @@ import { Player, Controls } from "@lottiefiles/react-lottie-player";
 import loadingimg from "../assets/loading.json";
 import { FaHeart, FaBed, FaPhone } from "react-icons/fa";
 import { FaHouseUser } from "react-icons/fa";
-import { TbPointFilled } from "react-icons/tb";
+import { GiCheckMark } from "react-icons/gi";
 import { RiHomeHeartFill } from "react-icons/ri";
 import { MdMeetingRoom, MdWc, MdOutlineEmail } from "react-icons/md";
 import { PiResizeLight } from "react-icons/pi";
-import { GiPositionMarker } from "react-icons/gi";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import Reviews from "../Components/Reviews";
 import Gallery from "../Components/Gallery";
 import AddNewReview from "../Components/AddNewReview";
@@ -113,16 +113,20 @@ const HouseDetails = () => {
       <div className="py-8 custom-bg-color-primary">
         <div className="mx-auto max-w-screen-xl px-8">
           <div className="w-full mt-8 p-5 bg-white border rounded-2xl">
-            <div className="flex flex-row items-start mt-2 text-4xl">
-              <GiPositionMarker />
-              <span className="pl-2 text-2xl">
-                Indirizzo: {address.city} {address.number}, {address.region},{" "}
-                {address.address}, {address.country}, {address.province},{" "}
-                {address["postal-code"]}
-              </span>
+            <div className="md:mt-2 mx-5">
+              <div className="font-semi-bold flex items-start text-xl">
+                <span className="">
+                  <FaMapMarkerAlt />
+                </span>
+                <span className="pl-2">
+                  {address.city} ({address.province}) - {address.address},{" "}
+                  {address.number}, {address.region}, {address.country},{" "}
+                  {address["postal-code"]}
+                </span>
+              </div>
             </div>
 
-            <div className="flex flex-wrap mx-4 text-gray-500 mt-4">
+            <div className="flex flex-wrap mx-4 text-gray-500 mt-4 pl-6">
               <div className="flex items-center mx-2 mb-2 lg:mb-0">
                 <PiResizeLight /> <span className="pl-2">{size} Mq</span>
               </div>
@@ -140,21 +144,23 @@ const HouseDetails = () => {
             <div className="mx-auto max-w-screen-xl px-5 pt-5">
               <div className="flex items-center text-xl md:mt-6 mt-2">
                 <RiHomeHeartFill />
-                <span className="pl-2 font-semi-bold">Servizi:</span>
+                <span className="pl-2 font-semi-bold">Servizi</span>
               </div>
               {services.length === 0 && (
-                <h1 className="mt-5 text-2xl px-8 text-center">
+                <h1 className="mt-5 text-2xl px-8 text-center pl-6">
                   Nessun servizio disponibile
                 </h1>
               )}
-              {services.map((service) => (
-                <div className="flex items-center py-2" key={service.id}>
-                  <span className="pr-2">
-                    <TbPointFilled />
-                  </span>
-                  {service.name}
-                </div>
-              ))}
+              <div className="flex flex-wrap">
+                {services.map((service) => (
+                  <div className="flex items-center py-2 pl-6" key={service.id}>
+                    <span className="pr-2">
+                      <GiCheckMark className="text-green-400" />
+                    </span>
+                    {service.name}
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="md:mt-10 mt-5 mx-5">
@@ -162,17 +168,17 @@ const HouseDetails = () => {
                 <span className="">
                   <FaHouseUser />
                 </span>
-                <span className="pl-2 font-semi-bold">Contatta l'host:</span>
+                <span className="pl-2 font-semi-bold">Contatta l'host</span>
               </div>
               <div className="flex flex-col lg:flex-row md:flex-row mt-2">
-                <div className="flex items-center mt-1 hover:underline">
-                  <MdOutlineEmail />{" "}
+                <div className="flex items-center mt-1 hover:underline pl-6">
+                  <MdOutlineEmail className="text-green-400" />{" "}
                   <a href={`mailto:${email}`} className="pl-2">
                     {email}
                   </a>
                 </div>
                 <div className="flex items-center mt-2 lg:mt-0 lg:pl-8 md:pl-8 hover:underline">
-                  <FaPhone />{" "}
+                  <FaPhone className="text-green-400" />{" "}
                   <a href={`phoneto:${email}`} className="pl-2">
                     {phone_number}
                   </a>
