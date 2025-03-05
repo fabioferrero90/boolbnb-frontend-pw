@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 
 const AddNewReview = () => {
-  const { renderReviews } = useGlobalContext();
-  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;  
+  const { renderReviews, ratingNames } = useGlobalContext();
+  const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
   const { id } = useParams();
 
   const initialFormReview = {
@@ -125,26 +125,24 @@ const AddNewReview = () => {
                     required
                   />
                 </div>
-                <div className="mb-5">
-                  <label
-                    htmlFor="rating_id"
-                    className="block mb-2 text-sm font-medium"
-                  >
-                    Inserisci un voto da 1 a 5
+                <div className="col-span-2 sm:col-span-1">
+                  <label htmlFor="category" className="block mb-2 text-sm font-medium text-gray-900">
+                    Scrivi la tua valutazione:
                   </label>
-                  <input
-                    type="number"
-                    name="rating_id"
-                    className="shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                    min={1}
-                    max={5}
-                    placeholder="Digita un numero da 1 a 5..."
-                    value={formReview.rating_id}
-                    onChange={setFieldValue}
-                    required
-                  />
+                  <select
+                    id="category"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5"
+                  >
+                    <option selected="" className="block mb-2 text-sm font-medium">
+                      Scegli un'opzione:
+                    </option>
+                    {ratingNames.map((rating) => (
+                      <option key={rating.id} value={rating.id}>
+                        {rating.rating_name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-
                 <button
                   type="submit"
                   className="text-white custom-bg-color-primary font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer w-full"
