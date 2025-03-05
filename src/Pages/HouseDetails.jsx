@@ -103,15 +103,39 @@ const HouseDetails = () => {
           </div>
         </div>
 
-        <div className="mx-auto max-w-screen-xl px-8 no-select">
+        <div className="mx-auto max-w-screen-xl md:px-8 no-select">
           <div className="w-full mb-5 lg:mb-0 custom-gallery ">
             <Gallery />
           </div>
         </div>
       </div>
 
-      <div className="py-8 custom-bg-color-primary">
+      <div className="py-2 pb-13 custom-bg-color-primary">
         <div className="mx-auto max-w-screen-xl px-8">
+          <div className="flex flex-col lg:flex-row w-full justify-between items-center my-10">
+            <div className="w-full lg:w-[70%] lg:border-r p-5 py-15 border-white ">
+              <span className="pt-4 text-2xl text-white">
+                <strong>Descrizione: </strong>
+              </span>
+              <p className="mt-4 text-white">{abstract}</p>
+            </div>
+
+            <div className="w-full lg:w-[25%] text-center mt-4 lg:mt-0">
+              <p className="font-semibold text-4xl text-white">
+                {price_pernight}€ / notte
+              </p>
+              <button
+                type="button"
+                className="text-white bg-green-400 cursor-pointer font-medium rounded-lg px-5 py-2.5 me-2 mt-6"
+              >
+                <a href={`mailto:${email}`}>Contatta l'host!</a>
+              </button>
+              <p className="mt-2 text-sm text-white">
+                Clicca sul tasto per prenotare il tuo soggiorno
+              </p>
+            </div>
+          </div>
+
           <div className="w-full mt-8 p-5 bg-white border rounded-2xl">
             <div className="md:mt-2 mx-5">
               <div className="font-semi-bold flex items-start text-xl">
@@ -177,37 +201,13 @@ const HouseDetails = () => {
                     {email}
                   </a>
                 </div>
-                <div className="flex items-center mt-2 lg:mt-0 lg:pl-8 md:pl-8 hover:underline">
-                  <FaPhone className="text-green-400" />{" "}
+                <div className="flex items-center pl-6 mt-2 lg:mt-0 lg:pl-8 md:pl-8 hover:underline">
+                  <FaPhone className="text-green-400 " />{" "}
                   <a href={`phoneto:${email}`} className="pl-2">
                     {phone_number}
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row w-full justify-between items-center my-10">
-            <div className="w-full lg:w-[70%] lg:border-r p-5 py-15 border-white ">
-              <span className="pt-4 text-2xl text-white">
-                <strong>Descrizione: </strong>
-              </span>
-              <p className="mt-4 text-white">{abstract}</p>
-            </div>
-
-            <div className="w-full lg:w-[25%] text-center mt-4 lg:mt-0">
-              <p className="font-semibold text-4xl text-white">
-                {price_pernight}€ / notte
-              </p>
-              <button
-                type="button"
-                className="text-white bg-green-400 cursor-pointer font-medium rounded-lg px-5 py-2.5 me-2 mt-6"
-              >
-                <a href={`mailto:${email}`}>Contatta l'host!</a>
-              </button>
-              <p className="mt-2 text-sm text-white">
-                Clicca sul tasto per prenotare il tuo soggiorno
-              </p>
             </div>
           </div>
         </div>
