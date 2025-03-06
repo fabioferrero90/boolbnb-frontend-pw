@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 
 const AddNewReview = () => {
-  const { renderReviews, ratingNames } = useGlobalContext();
+  const { renderReviews, ratingNames, Notify } = useGlobalContext();
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
   const { id } = useParams();
 
@@ -31,6 +31,7 @@ const AddNewReview = () => {
       })
       .then((res) => {
         setFormReview(initialFormReview);
+        Notify("Complimenti!", "Recensione inviata con successo", "success");
         renderReviews(id);
       })
       .catch((err) => {

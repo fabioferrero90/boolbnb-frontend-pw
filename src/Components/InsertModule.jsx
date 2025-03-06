@@ -38,7 +38,7 @@ const InsertModule = () => {
   };
 
   const [formData, setFormData] = useState({});
-  const { houseTypes, fetchHouseTypes, setPreviewData } = useGlobalContext();
+  const { houseTypes, fetchHouseTypes, setPreviewData, Notify } = useGlobalContext();
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -170,7 +170,7 @@ const InsertModule = () => {
       })
       .then((res) => {
         console.log("Success:", res.data);
-        alert("Casa inserita con successo");
+        Notify("Casa inserita", "Casa inserita con successo", "success");
         navigate("/");
       })
       .catch((error) =>

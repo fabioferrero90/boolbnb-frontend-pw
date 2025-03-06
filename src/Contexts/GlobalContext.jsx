@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const GlobalContext = createContext();
+
 const GlobalProvider = ({ children }) => {
   const [results, setResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -13,6 +14,13 @@ const GlobalProvider = ({ children }) => {
   const [gallery, setGallery] = useState([]);
   const [houseTypes, setHouseTypes] = useState([]);
   const [previewData, setPreviewData] = useState({});
+  const defaultNotificationData = {
+    title: "",
+    message: "",
+    type: ""
+  };
+  const [notificationData, setNotificationData] = useState(defaultNotificationData);
+  const [showNotify, setShowNotify] = useState(false);
 
   const APIendpoint = import.meta.env.VITE_SERVER_ENDPOINT;
 
@@ -30,18 +38,23 @@ const GlobalProvider = ({ children }) => {
     "di",
   ];
 
+  const Notify = (title, message, type) => {
+    setNotificationData({ title, message, type });
+    setShowNotify(true);
+    setTimeout(() => {
+      setShowNotify(false);
+      setTimeout(()=> {
+        setNotificationData(defaultNotificationData);
+      }, 2000);
+    }, 5000);
+  };
+
   function filtraParoleChiave(input) {
     const splittedWord = input
       .split(" ")
       .filter((parola) => !congiunzioni.includes(parola.toLowerCase()));
     return splittedWord.join(" ");
   }
-
-  // const renderServices = (id) => {
-  //   axios.get(`${APIendpoint}/houses/services/${id} `).then((res) => {
-  //     console.log(res.data);
-  //   });
-  // };
 
   const fetchResults = (value) => {
     const query = filtraParoleChiave(value);
@@ -123,7 +136,6 @@ const GlobalProvider = ({ children }) => {
       });
   };
 
-
   const value = {
     results,
     filteredResults,
@@ -146,6 +158,11 @@ const GlobalProvider = ({ children }) => {
     house,
     previewData,
     setPreviewData,
+    setNotificationData,
+    setShowNotify,
+    notificationData,
+    showNotify,
+    Notify
   };
 
   return (
