@@ -33,9 +33,9 @@ To run this project, you will need to add the following environment variables to
 this variable should point to the b&b server API hosted here: https://github.com/luciameneghin/BoolB-B
 ## Roadmap
 
-- House detail page
-- New house insert page
-- Review manager
+🟢 - House detail page
+🟢 - New house insert page
+🟢 - Review manager
 - Login Feature
 - Host manager
 
