@@ -21,7 +21,7 @@ Progetto di un sito web per la gestione di alloggi privati, in stile AirBnb, il 
 
 
 ## Public Demo Here:
-http://51.178.24.27/
+https://boolbnb.fulldevs.it/
 
 
 ## Environment Variables
